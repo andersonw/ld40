@@ -60,17 +60,6 @@ class PlayState extends FlxState
 		}
 	}
 
-	public function boxToTheBox(box1:Box, box2:Box)
-	{
-		if(box1.carried || box2.carried){
-			_player.drop();
-		}
-
-		FlxObject.separate(box1, box2);
-		box1.immovable = false;
-		box2.immovable = false;
-	}
-
 	public function playerToThePowerdown(player:Player, powerdown:Powerdown)
 	{
 		InputManager.disableKey(powerdown.key);
@@ -126,7 +115,7 @@ class PlayState extends FlxState
 		for(box in _level.boxes){
 			box.immovable=false;
 		}*/
-		FlxG.overlap(_level.boxes, _level.boxes, boxToTheBox);
+		FlxG.collide(_level.boxes, _level.boxes, boxToTheFloor);
 		FlxG.collide(_level.boxes, _level.walls, boxToTheFloor);
 
 		FlxG.collide(_player, _level.walls, playerToTheFloor);
