@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.FlxState;
 
 class PlayState extends FlxState
@@ -21,6 +22,7 @@ class PlayState extends FlxState
 		}
 		_player = new Player(_level.spawn.x, _level.spawn.y);
 		add(_player);
+		add(_player.grabBox);
 
 		FlxG.camera.follow(_player);
 		resetLevelBounds();
@@ -58,6 +60,17 @@ class PlayState extends FlxState
 		}
 	}
 
+	public function boxToTheBox(box1:Box, box2:Box)
+	{
+		if(box1.carried || box2.carried){
+			_player.drop();
+		}
+
+		FlxObject.separate(box1, box2);
+		box1.immovable = false;
+		box2.immovable = false;
+	}
+
 	public function playerToThePowerdown(player:Player, powerdown:Powerdown)
 	{
 		InputManager.disableKey(powerdown.key);
@@ -73,10 +86,10 @@ class PlayState extends FlxState
 		resetLevel();
 	}
 
-	public function carryBox(player:Player, box:Box){
-		if(!box.carried && !player.isCarrying)
+	public function carryBox(grabBox:FlxObject, box:Box){
+		if(!box.carried && !_player.isCarrying)
 		{
-			player.carry(box);
+			_player.carry(box);
 		}
 	}
 
@@ -107,23 +120,23 @@ class PlayState extends FlxState
 
 		//hacky fix to make boxes not move when players run into them
 		for(box in _level.boxes){
-			box.immovable=true;
+			if(!box.carried) box.immovable=true;
 		}
 		FlxG.collide(_player, _level.boxes, playerToTheFloor);
 		for(box in _level.boxes){
 			box.immovable=false;
 		}
 		FlxG.collide(_level.boxes, _level.walls, boxToTheFloor);
+		FlxG.overlap(_level.boxes, _level.boxes, boxToTheBox);
 		
 		FlxG.overlap(_player, _level.deathWalls, playerToTheDeath);
 		FlxG.overlap(_player, _level.powerdowns, playerToThePowerdown);
 
 		if(InputManager.isJustPressed(C)){
-			trace('c is for carry');
 			if(_player.isCarrying){
 				_player.drop();
 			}else{
-				FlxG.overlap(_player, _level.boxes, carryBox);
+				FlxG.overlap(_player.grabBox, _level.boxes, carryBox);
 			}
 		}
 
