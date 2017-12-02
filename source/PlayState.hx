@@ -45,6 +45,20 @@ class PlayState extends FlxState
 		}
 	}
 
+	public function boxToTheFloor(box:Box, floor:Wall)
+	{
+		trace('box hit floor!');
+		if((floor.wasTouching & 256) != 0){	
+			box.onFloor = true;
+
+			if(floor.wallType == ICE){
+				box.onIce = true;
+			}else{
+				box.onIce = false;
+			}
+		}
+	}
+
 	public function playerToThePowerdown(player:Player, powerdown:Powerdown)
 	{
 		InputManager.disableKey(powerdown.key);
@@ -79,8 +93,13 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		_player.onFloor = false;
+		for(box in _level.boxes){
+			box.onFloor = false;
+		}
 
 		FlxG.collide(_player, _level.walls, playerToTheFloor);
+		FlxG.collide(_player, _level.boxes, playerToTheFloor);
+		FlxG.collide(_level.boxes, _level.walls, boxToTheFloor);
 		
 		FlxG.overlap(_player, _level.deathWalls, playerToTheDeath);
 		FlxG.overlap(_player, _level.powerdowns, playerToThePowerdown);

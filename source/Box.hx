@@ -19,7 +19,7 @@ class Box extends Wall
     {
         super(X, Y, width, height);
         makeGraphic(width, height, new FlxColor(0xffb0cccc));
-        immovable=true;
+        //immovable=true;
     }
 
     public function getCarried(carrier:FlxSprite){
@@ -59,6 +59,10 @@ class Box extends Wall
                 vX *= HORIZONTAL_DRAG;
             }
             vY *= VERTICAL_DRAG;
+
+            if (onFloor) {
+                vY = 0;
+            }
 
             // terminal speeds
             // (for the most part air resistance should take care of this) 

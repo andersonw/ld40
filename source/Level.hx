@@ -12,6 +12,7 @@ import Wall.WallType;
 // adapted from https://github.com/HaxeFlixel/flixel-demos/blob/master/Editors/TiledEditor/source/TiledLevel.hx
 class Level extends TiledMap {
     public var walls:FlxTypedGroup<Wall>;
+    public var boxes:FlxTypedGroup<Box>;
     public var powerdowns:FlxTypedGroup<Powerdown>;
     public var deathWalls:FlxTypedGroup<DeathWall>;
 
@@ -27,10 +28,11 @@ class Level extends TiledMap {
         super(levelPath);
 
         walls = new FlxTypedGroup<Wall>();
+        boxes = new FlxTypedGroup<Box>();
         powerdowns = new FlxTypedGroup<Powerdown>();
         deathWalls = new FlxTypedGroup<DeathWall>();
 
-        entityGroups = [walls, powerdowns, deathWalls];
+        entityGroups = [walls, boxes, powerdowns, deathWalls];
 
         for (layer in layers) {
             if (layer.type != TiledLayerType.OBJECT) continue;
@@ -45,6 +47,9 @@ class Level extends TiledMap {
                         }
                         var levelObj:Wall = new Wall(obj.x, obj.y, obj.width, obj.height, wallType);
                         walls.add(levelObj);
+                    case "Boxes":
+                        var levelObj:Box = new Box(obj.x, obj.y, obj.width, obj.height);
+                        boxes.add(levelObj);
                     case "Locations":
                         if(obj.name == "start")
                             spawn = new FlxPoint(obj.x, obj.y);
