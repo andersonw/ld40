@@ -74,6 +74,22 @@ class PlayState extends FlxState
             FlxG.switchState(new PlayState());
         }
 
+        if (FlxG.keys.justPressed.N) {
+			InputManager.resetDisabledKeys();
+            if (Registry.currLevel + 1 < Registry.levelList.length) {
+                Registry.currLevel += 1;
+            } 
+            FlxG.switchState(new PlayState());
+        }
+
+        if (FlxG.keys.justPressed.B) {
+			InputManager.resetDisabledKeys();
+            if (Registry.currLevel != 0) {
+                Registry.currLevel -= 1;
+            }
+            FlxG.switchState(new PlayState());
+        }
+
 		super.update(elapsed);
 	}
 
