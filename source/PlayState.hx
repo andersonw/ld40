@@ -9,7 +9,7 @@ class PlayState extends FlxState
 	private var _player:Player;
     private var _levelFile:String;
 
-	private var _collected:Int = 0;
+	private var _collected:Int;
 	
 	override public function create():Void
 	{
@@ -26,6 +26,7 @@ class PlayState extends FlxState
 		resetLevelBounds();
 
 		InputManager.resetDisabledKeys();
+		_collected = 0;
 
 		super.create();
 	}
@@ -49,6 +50,10 @@ class PlayState extends FlxState
 		}
 	}
 
+	public function playerToTheDeath(player:Player, death:DeathWall){
+		resetLevel();
+	}
+
 	public function nextLevel()
 	{
 		if(Registry.currLevel < (Registry.levelList.length - 1)) {
@@ -61,17 +66,21 @@ class PlayState extends FlxState
 		}	
 	}
 
+	public function resetLevel(){
+		FlxG.switchState(new PlayState());
+	}
+
 	override public function update(elapsed:Float):Void
 	{
 		_player.onFloor = false;
 
 		FlxG.collide(_player, _level.walls, playerToTheFloor);
 		
+		FlxG.overlap(_player, _level.deathWalls, playerToTheDeath);
 		FlxG.overlap(_player, _level.powerdowns, playerToThePowerdown);
 
         if (FlxG.keys.justPressed.R) {
-			InputManager.resetDisabledKeys();
-            FlxG.switchState(new PlayState());
+            resetLevel();
         }
 
         if (FlxG.keys.justPressed.N) {

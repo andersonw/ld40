@@ -12,6 +12,7 @@ import flixel.util.FlxColor;
 class Level extends TiledMap {
     public var walls:FlxTypedGroup<Wall>;
     public var powerdowns:FlxTypedGroup<Powerdown>;
+    public var deathWalls:FlxTypedGroup<DeathWall>;
 
     public var bounds:FlxRect;
 
@@ -26,8 +27,9 @@ class Level extends TiledMap {
 
         walls = new FlxTypedGroup<Wall>();
         powerdowns = new FlxTypedGroup<Powerdown>();
+        deathWalls = new FlxTypedGroup<DeathWall>();
 
-        entityGroups = [walls, powerdowns];
+        entityGroups = [walls, powerdowns, deathWalls];
 
         for (layer in layers) {
             if (layer.type != TiledLayerType.OBJECT) continue;
@@ -44,6 +46,9 @@ class Level extends TiledMap {
                     case "Powerdowns":
                         var levelObj:Powerdown = new Powerdown(FlxKey.fromString(obj.name), obj.x, obj.y);
                         powerdowns.add(levelObj);
+                    case "Death":
+                        var levelObj:DeathWall = new DeathWall(obj.x, obj.y, obj.width, obj.height);
+                        deathWalls.add(levelObj);
                 }
             }
         }
