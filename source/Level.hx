@@ -60,12 +60,6 @@ class Level extends TiledMap {
                 maxY = Math.max(maxY, obj.y+obj.height);
             }
         }
-        /*
-        trace("minX, maxX, minY, maxY");
-        trace(minX);
-        trace(maxX);
-        trace(minY);
-        trace(maxY); */
 
         bounds = new FlxRect(minX-100, minY-100, maxX-minX+200, maxY-minY+200);
     }

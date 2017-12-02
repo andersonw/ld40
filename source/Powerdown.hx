@@ -3,6 +3,7 @@ package;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import flixel.FlxG;
+import flixel.input.keyboard.FlxKey;
 
 class Powerdown extends FlxSprite
 {
@@ -10,6 +11,7 @@ class Powerdown extends FlxSprite
     public function new(key:FlxKey, ?X:Float=0, ?Y:Float=0)
     {
         super(X, Y);
+        this.key = key;
         makeGraphic(32, 32, new FlxColor(0xff00ff00));
         immovable=true;
     }
