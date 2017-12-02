@@ -47,7 +47,6 @@ class PlayState extends FlxState
 
 	public function boxToTheFloor(box:Box, floor:Wall)
 	{
-		trace('box hit floor!');
 		if((floor.wasTouching & 256) != 0){	
 			box.onFloor = true;
 
@@ -98,7 +97,15 @@ class PlayState extends FlxState
 		}
 
 		FlxG.collide(_player, _level.walls, playerToTheFloor);
+
+		//hacky fix to make boxes not move when players run into them
+		for(box in _level.boxes){
+			box.immovable=true;
+		}
 		FlxG.collide(_player, _level.boxes, playerToTheFloor);
+		for(box in _level.boxes){
+			box.immovable=false;
+		}
 		FlxG.collide(_level.boxes, _level.walls, boxToTheFloor);
 		
 		FlxG.overlap(_player, _level.deathWalls, playerToTheDeath);

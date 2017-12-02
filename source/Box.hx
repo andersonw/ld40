@@ -19,7 +19,7 @@ class Box extends Wall
     {
         super(X, Y, width, height);
         makeGraphic(width, height, new FlxColor(0xffb0cccc));
-        //immovable=true;
+        immovable=false;
     }
 
     public function getCarried(carrier:FlxSprite){
