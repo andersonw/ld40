@@ -7,6 +7,7 @@ import flixel.group.FlxGroup;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
 import flixel.util.FlxColor;
+import Wall.WallType;
 
 // adapted from https://github.com/HaxeFlixel/flixel-demos/blob/master/Editors/TiledEditor/source/TiledLevel.hx
 class Level extends TiledMap {
@@ -38,7 +39,11 @@ class Level extends TiledMap {
             for (obj in objectLayer.objects) {
                 switch(objectLayer.name) {
                     case "Walls":
-                        var levelObj:Wall = new Wall(obj.x, obj.y, obj.width, obj.height, ICE);
+                        var wallType:WallType = REGULAR;
+                        if(obj.properties.get('type') == 'ice'){
+                            wallType = ICE;
+                        }
+                        var levelObj:Wall = new Wall(obj.x, obj.y, obj.width, obj.height, wallType);
                         walls.add(levelObj);
                     case "Locations":
                         if(obj.name == "start")
