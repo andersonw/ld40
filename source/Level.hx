@@ -11,6 +11,7 @@ import flixel.util.FlxColor;
 // adapted from https://github.com/HaxeFlixel/flixel-demos/blob/master/Editors/TiledEditor/source/TiledLevel.hx
 class Level extends TiledMap {
     public var walls:FlxTypedGroup<Wall>;
+    public var powerdowns:FlxTypedGroup<Powerdown>;
 
     public var bounds:FlxRect;
 
@@ -22,8 +23,9 @@ class Level extends TiledMap {
         super(levelPath);
 
         walls = new FlxTypedGroup<Wall>();
+        powerdowns = new FlxTypedGroup<Powerdown>();
 
-        entityGroups = [walls];
+        entityGroups = [walls, powerdowns];
 
         for (layer in layers) {
             if (layer.type != TiledLayerType.OBJECT) continue;
@@ -37,6 +39,9 @@ class Level extends TiledMap {
                     case "Locations":
                         if(obj.name == "start")
                             spawn = new FlxPoint(obj.x, obj.y);
+                    case "Powerdowns":
+                        var levelObj:Powerdown = new Powerdown(FlxKey.fromString(obj.name), obj.x, obj.y);
+                        powerdowns.add(levelObj);
                 }
             }
         }

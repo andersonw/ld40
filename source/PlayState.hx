@@ -7,8 +7,6 @@ class PlayState extends FlxState
 {
 	private var _level:Level;
 	private var _player:Player;
-
-	private var _powerdown:Powerdown;
 	
 	override public function create():Void
 	{
@@ -19,9 +17,6 @@ class PlayState extends FlxState
 		}
 		_player = new Player(_level.spawn.x, _level.spawn.y);
 		add(_player);
-
-		_powerdown = new Powerdown(UP, _level.spawn.x + 100, _level.spawn.x + 100);
-		add(_powerdown);
 
 		FlxG.camera.follow(_player);
 		resetLevelBounds();
@@ -48,7 +43,7 @@ class PlayState extends FlxState
 
 		FlxG.collide(_player, _level.walls, playerToTheFloor);
 		
-		FlxG.overlap(_player, _powerdown, playerToThePowerdown);
+		FlxG.overlap(_player, _level.powerdowns, playerToThePowerdown);
 
         if (FlxG.keys.justPressed.R) {
             FlxG.switchState(new PlayState());
