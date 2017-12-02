@@ -4,8 +4,13 @@ import flixel.FlxState;
 
 class PlayState extends FlxState
 {
+	private var _player:Player;
+	
 	override public function create():Void
 	{
+		_player = new Player(50, 50);
+		add(_player);
+		
 		super.create();
 	}
 
@@ -14,3 +19,5 @@ class PlayState extends FlxState
 		super.update(elapsed);
 	}
 }
+
+

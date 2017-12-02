@@ -1,2 +1,2 @@
 # ld40
-A possible game for Ludum Dare 40
+An impossible game for Ludum Dare 40
