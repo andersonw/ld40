@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
@@ -18,11 +19,15 @@ class Player extends FlxSprite
     public var isCarrying:Bool = false;
     public var carrying:Box;
 
+    public var grabBox:FlxObject;
+
     public function new(?X:Float=0, ?Y:Float=0)
     {
         super(X, Y);
         makeGraphic(32, 32, FlxColor.RED);
         alpha = DEFAULT_ALPHA;
+
+        grabBox = new FlxObject(0, 0, GRABBOX_WIDTH, GRABBOX_HEIGHT);
     }
 
     public function carry(box:Box){
@@ -38,11 +43,21 @@ class Player extends FlxSprite
         isCarrying = false;
     }
 
+    public function alignGrabbox(){
+        grabBox.x = this.getMidpoint().x - GRABBOX_WIDTH/2;
+        grabBox.y = this.getMidpoint().y - GRABBOX_HEIGHT/2;
+    }
+
     public override function update(elapsed:Float):Void
     {
+        alignGrabbox();
         movement();
-
+        
         super.update(elapsed);
+
+        if(isCarrying){
+            carrying.alignWithCarrier();
+        }
     }
 
     private function movement():Void

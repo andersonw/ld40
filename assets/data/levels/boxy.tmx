@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="15" tilewidth="32" tileheight="32" nextobjectid="16">
+ <layer name="Tile Layer 1" width="25" height="15">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="Death">
+  <object id="1" x="0" y="0" width="800" height="32"/>
+  <object id="2" x="0" y="0" width="32" height="480"/>
+  <object id="3" x="0" y="448" width="800" height="32"/>
+  <object id="4" x="768" y="0" width="32" height="480"/>
+ </objectgroup>
+ <objectgroup name="Powerdowns"/>
+ <objectgroup name="Locations">
+  <object id="15" name="start" x="213" y="194" width="48" height="48"/>
+ </objectgroup>
+ <objectgroup name="Boxes">
+  <object id="12" name="box" x="420" y="321" width="32" height="32"/>
+  <object id="14" name="box" x="269" y="323" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="Walls">
+  <object id="10" x="140" y="366" width="494" height="27"/>
+  <object id="11" name="ICE" x="201" y="247" width="155" height="27"/>
+ </objectgroup>
+</map>
