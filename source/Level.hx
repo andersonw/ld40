@@ -19,6 +19,8 @@ class Level extends TiledMap {
 
     public var spawn:FlxPoint;
 
+    public var totalPowerdowns:Int;
+
     public function new(levelPath:String) {
         super(levelPath);
 
@@ -45,6 +47,8 @@ class Level extends TiledMap {
                 }
             }
         }
+
+        totalPowerdowns = powerdowns.length;
 
         // set level bounds (used for collision)
         updateBounds();

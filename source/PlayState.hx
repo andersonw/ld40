@@ -8,6 +8,8 @@ class PlayState extends FlxState
 	private var _level:Level;
 	private var _player:Player;
     private var _levelFile:String;
+
+	private var _collected:Int = 0;
 	
 	override public function create():Void
 	{
@@ -23,6 +25,8 @@ class PlayState extends FlxState
 		FlxG.camera.follow(_player);
 		resetLevelBounds();
 
+		InputManager.resetDisabledKeys();
+
 		super.create();
 	}
 
@@ -37,6 +41,23 @@ class PlayState extends FlxState
 	{
 		InputManager.disableKey(powerdown.key);
 		powerdown.kill();
+
+		_collected += 1;
+		if(_collected == _level.totalPowerdowns){
+			nextLevel();
+		}
+	}
+
+	public function nextLevel()
+	{
+		if(Registry.currLevel < (Registry.levelList.length - 1)) {
+			Registry.currLevel += 1;
+			FlxG.switchState(new PlayState());
+		}
+		else
+		{
+			// FlxG.switchState(new EndState());
+		}	
 	}
 
 	override public function update(elapsed:Float):Void
