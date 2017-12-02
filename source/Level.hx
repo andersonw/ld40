@@ -38,7 +38,7 @@ class Level extends TiledMap {
             for (obj in objectLayer.objects) {
                 switch(objectLayer.name) {
                     case "Walls":
-                        var levelObj:Wall = new Wall(obj.x, obj.y, obj.width, obj.height);
+                        var levelObj:Wall = new Wall(obj.x, obj.y, obj.width, obj.height, ICE);
                         walls.add(levelObj);
                     case "Locations":
                         if(obj.name == "start")

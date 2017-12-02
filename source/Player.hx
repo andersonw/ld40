@@ -22,6 +22,7 @@ class Player extends FlxSprite
     public var dashLength:Float = 150;
 
     public var onFloor:Bool = false;
+    public var onIce:Bool = false;
     public var canDash:Bool = false;
 
     public function new(?X:Float=0, ?Y:Float=0)
@@ -103,8 +104,8 @@ class Player extends FlxSprite
 
         // apply drag
         if (onFloor) {
-            // no drag if holding left or right
-            if(!(_left || _right)){
+            // no drag if holding left or right or if on ice
+            if(!(_left || _right || onIce)){
                 vX *= floorDrag;    
             }
         } else {

@@ -36,6 +36,12 @@ class PlayState extends FlxState
 		if((floor.wasTouching & 256) != 0){	
 			player.onFloor = true;
 			player.canDash = true;
+
+			if(floor.wallType == ICE){
+				player.onIce = true;
+			}else{
+				player.onIce = false;
+			}
 		}
 	}
 
