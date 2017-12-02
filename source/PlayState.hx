@@ -153,6 +153,7 @@ class PlayState extends FlxState
 	public function resetLevelBounds() {
 		_level.updateBounds();
 		FlxG.worldBounds.set(_level.bounds.x, _level.bounds.y, _level.bounds.width, _level.bounds.height);
+		FlxG.camera.setScrollBoundsRect(_level.bounds.x, _level.bounds.y, _level.bounds.width, _level.bounds.height);
 	}
 }
 
