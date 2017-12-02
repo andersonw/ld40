@@ -5,17 +5,22 @@ import flixel.FlxState;
 
 class PlayState extends FlxState
 {
+	private var _level:Level;
+
 	private var _player:Player;
-	private var _wall:Wall;
 	
 	override public function create():Void
 	{
-		_player = new Player(50, 50);
-		add(_player);
+		_level = new Level(AssetPaths.test_level__tmx);
 
-		_wall = new Wall(50, 400, 400, 100);
-		add(_wall);
-		
+		for(entityGroup in _level.entityGroups)	{
+			add(entityGroup);
+		}
+		_player = new Player(_level.spawn.x, _level.spawn.y);
+		add(_player);
+		FlxG.camera.follow(_player);
+		resetLevelBounds();
+
 		super.create();
 	}
 
@@ -27,9 +32,14 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		_player.onFloor = false;
-		FlxG.collide(_player, _wall, playerToTheFloor);
+		FlxG.collide(_player, _level.walls, playerToTheFloor);
 		
 		super.update(elapsed);
+	}
+
+	public function resetLevelBounds() {
+		_level.updateBounds();
+		FlxG.worldBounds.set(_level.bounds.x, _level.bounds.y, _level.bounds.width, _level.bounds.height);
 	}
 }
 
