@@ -60,17 +60,6 @@ class PlayState extends FlxState
 		}
 	}
 
-	public function boxToTheBox(box1:Box, box2:Box)
-	{
-		if(box1.carried || box2.carried){
-			_player.drop();
-		}
-
-		FlxObject.separate(box1, box2);
-		box1.immovable = false;
-		box2.immovable = false;
-	}
-
 	public function playerToThePowerdown(player:Player, powerdown:Powerdown)
 	{
 		InputManager.disableKey(powerdown.key);
@@ -116,18 +105,20 @@ class PlayState extends FlxState
 			box.onFloor = false;
 		}
 
-		FlxG.collide(_player, _level.walls, playerToTheFloor);
-
 		//hacky fix to make boxes not move when players run into them
+		/*
 		for(box in _level.boxes){
 			if(!box.carried) box.immovable=true;
-		}
+		}*/
 		FlxG.collide(_player, _level.boxes, playerToTheFloor);
+		/*
 		for(box in _level.boxes){
 			box.immovable=false;
-		}
+		}*/
+		FlxG.collide(_level.boxes, _level.boxes, boxToTheFloor);
 		FlxG.collide(_level.boxes, _level.walls, boxToTheFloor);
-		FlxG.overlap(_level.boxes, _level.boxes, boxToTheBox);
+
+		FlxG.collide(_player, _level.walls, playerToTheFloor);
 		
 		FlxG.overlap(_player, _level.deathWalls, playerToTheDeath);
 		FlxG.overlap(_player, _level.powerdowns, playerToThePowerdown);
