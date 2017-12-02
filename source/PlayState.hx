@@ -34,6 +34,10 @@ class PlayState extends FlxState
 		_player.onFloor = false;
 		FlxG.collide(_player, _level.walls, playerToTheFloor);
 		
+        if (FlxG.keys.justPressed.R) {
+            FlxG.switchState(new PlayState());
+        }
+
 		super.update(elapsed);
 	}
 
