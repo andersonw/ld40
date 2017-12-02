@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.FlxState;
 
 class PlayState extends FlxState
@@ -21,6 +22,7 @@ class PlayState extends FlxState
 		}
 		_player = new Player(_level.spawn.x, _level.spawn.y);
 		add(_player);
+		add(_player.grabBox);
 
 		FlxG.camera.follow(_player);
 		resetLevelBounds();
@@ -73,10 +75,11 @@ class PlayState extends FlxState
 		resetLevel();
 	}
 
-	public function carryBox(player:Player, box:Box){
-		if(!box.carried && !player.isCarrying)
+	public function carryBox(grabBox:FlxObject, box:Box){
+		trace('overlapped with box!');
+		if(!box.carried && !_player.isCarrying)
 		{
-			player.carry(box);
+			_player.carry(box);
 		}
 	}
 
@@ -120,10 +123,11 @@ class PlayState extends FlxState
 
 		if(InputManager.isJustPressed(C)){
 			trace('c is for carry');
+			trace(_player.isCarrying);
 			if(_player.isCarrying){
 				_player.drop();
 			}else{
-				FlxG.overlap(_player, _level.boxes, carryBox);
+				FlxG.overlap(_player.grabBox, _level.boxes, carryBox);
 			}
 		}
 

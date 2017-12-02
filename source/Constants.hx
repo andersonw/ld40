@@ -16,6 +16,9 @@ class PlayerPhysics{
     public static inline var HORIZONTAL_ACCELERATION:Float = 50;
     public static inline var JUMP_SPEED:Float = 600;
     public static inline var DASH_LENGTH:Float = 150;
+
+    public static inline var GRABBOX_WIDTH:Float = 40;
+    public static inline var GRABBOX_HEIGHT:Float = 4;
 }
 
 class BoxPhysics{

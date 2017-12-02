@@ -30,7 +30,7 @@ class Box extends Wall
     }
 
     public function getDropped(){
-        this.velocity = carrier.velocity;
+        //this.velocity = carrier.velocity;
 
         carrier = null;
         carried = false;
@@ -41,6 +41,12 @@ class Box extends Wall
         movement();
 
         super.update(elapsed);
+    }
+
+    public function alignWithCarrier():Void
+    {
+        x = carrier.x + carrierOffset.x;
+        y = carrier.y + carrierOffset.y;
     }
 
     private function movement():Void
@@ -82,10 +88,6 @@ class Box extends Wall
 
             if (vX < 0.01 && vX > -0.01) vX = 0;
             velocity.set(vX, vY);
-        }else{
-            x = carrier.x + carrierOffset.x;
-            y = carrier.y + carrierOffset.y;
         }
-        
     }
 }
