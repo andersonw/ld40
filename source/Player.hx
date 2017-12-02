@@ -10,10 +10,11 @@ class Player extends FlxSprite
     public static var DEFAULT_ALPHA = 0.6;
 
     // TODO: these dudes should be constants somewhere
-    public var speed:Float = 200;
     public var gravity:Float = 10;
-    public var jumpSpeed:Float = 400;
+    public var jumpSpeed:Float = 800;
+    public var horizontalTerminalSpeed:Float = 200;
     public var verticalTerminalSpeed:Float = 400;
+    public var horizontalAcceleration:Float = 50;
     public var verticalDrag:Float = 0.99;
     public var horizontalDrag:Float = 0.98;
     public var floorDrag:Float = 0.85;
@@ -42,10 +43,10 @@ class Player extends FlxSprite
         var _left:Bool = false;
         var _right:Bool = false;
 
-        _up = FlxG.keys.anyPressed([UP]);
-        _down = FlxG.keys.anyPressed([DOWN]);
-        _left = FlxG.keys.anyPressed([LEFT]);
-        _right = FlxG.keys.anyPressed([RIGHT]);
+        _up = InputManager.isPressed(UP);
+        _down = InputManager.isPressed(DOWN);
+        _left = InputManager.isPressed(LEFT);
+        _right = InputManager.isPressed(RIGHT);
 
         if (_up && _down)
             _up = _down = false;
@@ -56,16 +57,19 @@ class Player extends FlxSprite
         var vX:Float = velocity.x;
         var vY:Float = velocity.y;
         if (_left) {
-            vX = -speed;
+            vX -= horizontalAcceleration;
         } else if (_right) {
-            vX = speed;
+            vX += horizontalAcceleration;
+        }
+
+        // terminal horizontal velocity
+        if(vX > horizontalTerminalSpeed){
+            vX = horizontalTerminalSpeed;
+        }else if(vX < -horizontalTerminalSpeed){
+            vX = -horizontalTerminalSpeed;
         }
 
         vY = vY + gravity;
-        /*
-        if(vY > verticalTerminalSpeed){
-            vY = verticalTerminalSpeed;
-        }*/
 
         if (_up && onFloor) {
             vY = -jumpSpeed;
@@ -74,7 +78,10 @@ class Player extends FlxSprite
 
         // apply drag
         if (onFloor) {
-            vX *= floorDrag;    
+            // no drag if holding left or right
+            if(!(_left || _right)){
+                vX *= floorDrag;    
+            }
         } else {
             vX *= horizontalDrag;
         }
@@ -83,33 +90,5 @@ class Player extends FlxSprite
 
         if (vX < 0.01 && vX > -0.01) vX = 0;
         velocity.set(vX, vY);
-/*
-        if (_up || _down || _left || _right) {
-            var mA:Float = 0;
-            if(_up){
-                mA = -90;
-                if (_left){
-                    mA -= 45;
-                }else if(_right){
-                    mA += 45;
-                }
-            }else if(_down){
-                mA = 90;
-                if(_left){
-                    mA += 45;
-                }else if(_right){
-                    mA -= 45;
-                }
-            }else if(_left){
-                mA = 180;
-            }else if(_right){
-                mA = 0;
-            }
-            velocity.set(speed, 0);
-            velocity.rotate(FlxPoint.weak(0,0), mA);
-        }
-        else {
-            velocity.set(0, 0);
-        }*/
     }
 }
