@@ -60,13 +60,12 @@ class Player extends FlxSprite
         if(canDash && (_upDash || _leftDash || _rightDash || _downDash)){
             if(_upDash){
                 y -= dashLength;
-                onFloor = false;
+            }else if(_downDash){
+                y += dashLength;
             }else if(_leftDash){
                 x -= dashLength;
             }else if(_rightDash){
                 x += dashLength;
-            }else if(_downDash){
-                y += dashLength;
             }
 
             canDash = false;
