@@ -5,21 +5,11 @@ import flixel.FlxSprite;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 
+import Constants.PlayerPhysics.*;
+
 class Player extends FlxSprite
 {
     public static var DEFAULT_ALPHA = 0.6;
-
-    // TODO: these dudes should be constants somewhere
-    public var gravity:Float = 10;
-    public var jumpSpeed:Float = 400;
-    public var horizontalTerminalSpeed:Float = 200;
-    public var verticalTerminalSpeed:Float = 400;
-    public var horizontalAcceleration:Float = 50;
-    public var verticalDrag:Float = 0.99;
-    public var horizontalDrag:Float = 0.98;
-    public var floorDrag:Float = 0.85;
-
-    public var dashLength:Float = 150;
 
     public var onFloor:Bool = false;
     public var onIce:Bool = false;
@@ -60,13 +50,13 @@ class Player extends FlxSprite
         // only consider dash input if dash input is pressed
         if(canDash && (_upDash || _leftDash || _rightDash || _downDash)){
             if(_upDash){
-                y -= dashLength;
+                y -= DASH_LENGTH;
             }else if(_downDash){
-                y += dashLength;
+                y += DASH_LENGTH;
             }else if(_leftDash){
-                x -= dashLength;
+                x -= DASH_LENGTH;
             }else if(_rightDash){
-                x += dashLength;
+                x += DASH_LENGTH;
             }
 
             canDash = false;
@@ -83,22 +73,15 @@ class Player extends FlxSprite
         var vX:Float = velocity.x;
         var vY:Float = velocity.y;
         if (_left) {
-            vX -= horizontalAcceleration;
+            vX -= HORIZONTAL_ACCELERATION;
         } else if (_right) {
-            vX += horizontalAcceleration;
+            vX += HORIZONTAL_ACCELERATION;
         }
 
-        // terminal horizontal velocity
-        if(vX > horizontalTerminalSpeed){
-            vX = horizontalTerminalSpeed;
-        }else if(vX < -horizontalTerminalSpeed){
-            vX = -horizontalTerminalSpeed;
-        }
-
-        vY = vY + gravity;
+        vY = vY + GRAVITY;
 
         if (_up && onFloor) {
-            vY = -jumpSpeed;
+            vY = -JUMP_SPEED;
             onFloor = false;
         }
 
@@ -106,13 +89,27 @@ class Player extends FlxSprite
         if (onFloor) {
             // no drag if holding left or right or if on ice
             if(!(_left || _right || onIce)){
-                vX *= floorDrag;    
+                vX *= FLOOR_DRAG;    
             }
         } else {
-            vX *= horizontalDrag;
+            vX *= HORIZONTAL_DRAG;
         }
-        vY *= verticalDrag;
+        vY *= VERTICAL_DRAG;
 
+
+        // terminal speeds
+        // (for the most part air resistance should take care of this) 
+        if(vX > HORIZONTAL_TERMINAL_SPEED){
+            vX = HORIZONTAL_TERMINAL_SPEED;
+        }else if(vX < -HORIZONTAL_TERMINAL_SPEED){
+            vX = -HORIZONTAL_TERMINAL_SPEED;
+        }
+
+        if(vY > VERTICAL_TERMINAL_SPEED){
+            vY = VERTICAL_TERMINAL_SPEED;
+        }else if(vY < -VERTICAL_TERMINAL_SPEED){
+            vY = -VERTICAL_TERMINAL_SPEED;
+        }
 
         if (vX < 0.01 && vX > -0.01) vX = 0;
         velocity.set(vX, vY);
