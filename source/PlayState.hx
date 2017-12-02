@@ -46,6 +46,7 @@ class PlayState extends FlxState
 		FlxG.overlap(_player, _level.powerdowns, playerToThePowerdown);
 
         if (FlxG.keys.justPressed.R) {
+			InputManager.resetDisabledKeys();
             FlxG.switchState(new PlayState());
         }
 

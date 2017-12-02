@@ -13,6 +13,10 @@ class InputManager
         }
     }
 
+    public static function resetDisabledKeys(){
+        disabledKeys = new Array<FlxKey>();
+    }
+
     public static function isPressed(key:FlxKey){
         if(disabledKeys.indexOf(key)!=-1){
             return false;
