@@ -11,12 +11,12 @@ class Player extends FlxSprite
 
     // TODO: these dudes should be constants somewhere
     public var speed:Float = 200;
-    public var gravity:Float = 5;
+    public var gravity:Float = 10;
     public var jumpSpeed:Float = 400;
     public var verticalTerminalSpeed:Float = 400;
     public var verticalDrag:Float = 0.99;
-    public var horizontalDrag:Float = 0.99;
-    public var floorDrag:Float = 0.9;
+    public var horizontalDrag:Float = 0.98;
+    public var floorDrag:Float = 0.85;
 
     public var onFloor:Bool = false;
 
@@ -55,9 +55,9 @@ class Player extends FlxSprite
         // horizontal stuff
         var vX:Float = velocity.x;
         var vY:Float = velocity.y;
-        if(_left){
+        if (_left) {
             vX = -speed;
-        }else if(_right){
+        } else if (_right) {
             vX = speed;
         }
 
@@ -67,19 +67,21 @@ class Player extends FlxSprite
             vY = verticalTerminalSpeed;
         }*/
 
-        if(_up && onFloor){
+        if (_up && onFloor) {
             vY = -jumpSpeed;
             onFloor = false;
         }
 
         // apply drag
-        if(onFloor){
+        if (onFloor) {
             vX *= floorDrag;    
-        }else{
+        } else {
             vX *= horizontalDrag;
         }
         vY *= verticalDrag;
 
+
+        if (vX < 0.01 && vX > -0.01) vX = 0;
         velocity.set(vX, vY);
 /*
         if (_up || _down || _left || _right) {
