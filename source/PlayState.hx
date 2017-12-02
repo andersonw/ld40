@@ -34,6 +34,7 @@ class PlayState extends FlxState
 	{
 		if((floor.wasTouching & 256) != 0){	
 			player.onFloor = true;
+			player.canDash = true;
 		}
 	}
 

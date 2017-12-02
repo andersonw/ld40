@@ -19,7 +19,10 @@ class Player extends FlxSprite
     public var horizontalDrag:Float = 0.98;
     public var floorDrag:Float = 0.85;
 
+    public var dashLength:Float = 150;
+
     public var onFloor:Bool = false;
+    public var canDash:Bool = false;
 
     public function new(?X:Float=0, ?Y:Float=0)
     {
@@ -47,6 +50,29 @@ class Player extends FlxSprite
         _down = InputManager.isPressed(DOWN);
         _left = InputManager.isPressed(LEFT);
         _right = InputManager.isPressed(RIGHT);
+
+        var _upDash = InputManager.isJustPressed(W);
+        var _leftDash = InputManager.isJustPressed(A);
+        var _rightDash = InputManager.isJustPressed(D);
+        var _downDash = InputManager.isJustPressed(S);
+
+        // only consider dash input if dash input is pressed
+        if(canDash && (_upDash || _leftDash || _rightDash || _downDash)){
+            if(_upDash){
+                y -= dashLength;
+                onFloor = false;
+            }else if(_leftDash){
+                x -= dashLength;
+            }else if(_rightDash){
+                x += dashLength;
+            }else if(_downDash){
+                y += dashLength;
+            }
+
+            canDash = false;
+            return;
+        }
+        
 
         if (_up && _down)
             _up = _down = false;
