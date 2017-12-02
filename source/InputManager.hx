@@ -24,6 +24,14 @@ class InputManager
 
         return FlxG.keys.anyPressed([key]);
     }
+
+    public static function isJustPressed(key:FlxKey){
+        if(disabledKeys.indexOf(key)!=-1){
+            return false;
+        }
+
+        return FlxG.keys.anyJustPressed([key]);
+    }
 }
 
 
