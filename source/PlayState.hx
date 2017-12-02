@@ -73,6 +73,13 @@ class PlayState extends FlxState
 		resetLevel();
 	}
 
+	public function carryBox(player:Player, box:Box){
+		if(!box.carried && !player.isCarrying)
+		{
+			player.carry(box);
+		}
+	}
+
 	public function nextLevel()
 	{
 		if(Registry.currLevel < (Registry.levelList.length - 1)) {
@@ -110,6 +117,15 @@ class PlayState extends FlxState
 		
 		FlxG.overlap(_player, _level.deathWalls, playerToTheDeath);
 		FlxG.overlap(_player, _level.powerdowns, playerToThePowerdown);
+
+		if(InputManager.isJustPressed(C)){
+			trace('c is for carry');
+			if(_player.isCarrying){
+				_player.drop();
+			}else{
+				FlxG.overlap(_player, _level.boxes, carryBox);
+			}
+		}
 
         if (FlxG.keys.justPressed.R) {
             resetLevel();

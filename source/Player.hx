@@ -15,11 +15,27 @@ class Player extends FlxSprite
     public var onIce:Bool = false;
     public var canDash:Bool = false;
 
+    public var isCarrying:Bool = false;
+    public var carrying:Box;
+
     public function new(?X:Float=0, ?Y:Float=0)
     {
         super(X, Y);
         makeGraphic(32, 32, FlxColor.RED);
         alpha = DEFAULT_ALPHA;
+    }
+
+    public function carry(box:Box){
+        isCarrying = true;
+        carrying = box;
+
+        box.getCarried(this);
+    }
+
+    public function drop(){
+        carrying.getDropped();
+        carrying = null;
+        isCarrying = false;
     }
 
     public override function update(elapsed:Float):Void
