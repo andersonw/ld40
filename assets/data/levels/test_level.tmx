@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" nextobjectid="8">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" nextobjectid="17">
  <layer name="Tile Layer 1" width="30" height="30">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -34,6 +34,13 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="Death">
+  <object id="8" x="-92" y="877" width="1132" height="125"/>
+  <object id="9" x="937" y="-23" width="123" height="989"/>
+  <object id="11" x="-72" y="-78" width="1112" height="75"/>
+  <object id="12" x="-63" y="967" width="88"/>
+  <object id="16" x="-113" y="-22" width="101" height="986"/>
+ </objectgroup>
  <objectgroup name="Walls">
   <object id="1" x="248" y="492" width="408" height="133"/>
   <object id="2" x="347" y="277" width="219" height="121"/>
