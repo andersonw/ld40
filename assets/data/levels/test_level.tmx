@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" nextobjectid="8">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" nextobjectid="8">
  <layer name="Tile Layer 1" width="30" height="30">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -41,11 +41,7 @@
   <object id="16" x="0" y="0" width="128" height="960"/>
  </objectgroup>
  <objectgroup name="Walls">
-  <object id="1" x="248" y="492" width="408" height="133">
-   <properties>
-    <property name="type" value="ice"/>
-   </properties>
-  </object>
+  <object id="1" name="ICE" x="248" y="492" width="408" height="133"/>
   <object id="2" x="347" y="400" width="219" height="32"/>
  </objectgroup>
  <objectgroup name="Locations">

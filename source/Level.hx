@@ -40,7 +40,7 @@ class Level extends TiledMap {
                 switch(objectLayer.name) {
                     case "Walls":
                         var wallType:WallType = REGULAR;
-                        if(obj.properties.get('type') == 'ice'){
+                        if(obj.name == "ICE"){
                             wallType = ICE;
                         }
                         var levelObj:Wall = new Wall(obj.x, obj.y, obj.width, obj.height, wallType);
