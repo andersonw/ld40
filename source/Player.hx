@@ -11,7 +11,7 @@ class Player extends FlxSprite
 
     // TODO: these dudes should be constants somewhere
     public var gravity:Float = 10;
-    public var jumpSpeed:Float = 800;
+    public var jumpSpeed:Float = 500;
     public var horizontalTerminalSpeed:Float = 200;
     public var verticalTerminalSpeed:Float = 400;
     public var horizontalAcceleration:Float = 50;

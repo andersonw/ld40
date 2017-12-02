@@ -7,10 +7,12 @@ class PlayState extends FlxState
 {
 	private var _level:Level;
 	private var _player:Player;
+    private var _levelFile:String;
 	
 	override public function create():Void
 	{
-		_level = new Level(AssetPaths.test_level__tmx);
+		_levelFile = Registry.levelList[Registry.currLevel];
+        _level = new Level(_levelFile);
 
 		for(entityGroup in _level.entityGroups)	{
 			add(entityGroup);
