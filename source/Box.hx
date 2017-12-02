@@ -30,8 +30,8 @@ class Box extends Wall
     }
 
     public function getDropped(){
-        this.velocity.x = 2*carrier.velocity.x;
-        this.velocity.y = 2*carrier.velocity.y;
+        this.velocity.x = carrier.velocity.x;
+        this.velocity.y = carrier.velocity.y;
 
         carrier = null;
         carried = false;
