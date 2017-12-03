@@ -49,14 +49,13 @@ class PlayState extends FlxState
 
 	public function boxToTheFloor(box:Box, floor:Wall)
 	{
-		if((floor.wasTouching & 256) != 0){	
-			box.onFloor = true;
+		// trace(floor.wasTouching);
+		box.onFloor = true;
 
-			if(floor.wallType == ICE){
-				box.onIce = true;
-			}else{
-				box.onIce = false;
-			}
+		if(floor.wallType == ICE){
+			box.onIce = true;
+		}else{
+			box.onIce = false;
 		}
 	}
 
