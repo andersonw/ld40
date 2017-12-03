@@ -46,10 +46,10 @@
   <object id="3" name="wall" x="156" y="525" width="84" height="101"/>
  </objectgroup>
  <objectgroup name="Death">
-  <object id="11" x="-128" y="96" width="1184" height="32"/>
-  <object id="12" x="960" y="96" width="32" height="864"/>
-  <object id="13" x="-160" y="96" width="32" height="864"/>
-  <object id="14" x="-160" y="960" width="1216" height="32"/>
+  <object id="11" x="-384" y="96" width="1632" height="32"/>
+  <object id="12" x="1248" y="96" width="32" height="864"/>
+  <object id="13" x="-416" y="96" width="32" height="864"/>
+  <object id="14" x="-384" y="960" width="1632" height="32"/>
  </objectgroup>
  <objectgroup name="Powerdowns">
   <object id="4" name="RIGHT" x="185" y="484" width="33" height="32"/>

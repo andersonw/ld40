@@ -20,10 +20,10 @@
 </data>
  </layer>
  <objectgroup name="Death" offsetx="-128" offsety="0">
-  <object id="1" x="0" y="-240" width="800" height="32"/>
-  <object id="2" x="-32" y="-146" width="32" height="610"/>
-  <object id="3" x="0" y="448" width="800" height="32"/>
-  <object id="4" x="768" y="-158" width="32" height="608"/>
+  <object id="1" x="-256" y="-288" width="1248" height="32"/>
+  <object id="2" x="-256" y="-256" width="32" height="736"/>
+  <object id="3" x="-224" y="448" width="1216" height="32"/>
+  <object id="4" x="992" y="-288" width="32" height="768"/>
  </objectgroup>
  <objectgroup name="Powerdowns">
   <object id="17" name="UP" x="320" y="66" width="32" height="32"/>

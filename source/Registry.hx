@@ -7,7 +7,7 @@ class Registry
                             AssetPaths.long_icy_floor__tmx,
                             AssetPaths.jumping_test__tmx,
                             AssetPaths.tutorial_level_one__tmx,
-                            AssetPaths.test_level__tmx, 
+                            AssetPaths.tutorial_level_two__tmx, 
                             AssetPaths.one_jump__tmx,
                             AssetPaths.big_cave__tmx];
 
