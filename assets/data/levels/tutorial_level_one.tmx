@@ -26,7 +26,7 @@
   <object id="14" x="-96" y="448" width="1024" height="32"/>
  </objectgroup>
  <objectgroup name="Signs">
-  <object id="16" name="Collecting an key will prevent you from using it for the rest of the level, so be careful!" x="160" y="288" width="32" height="32"/>
+  <object id="16" name="Collecting a key will prevent you from using it for the rest of the level, so be careful!" x="160" y="288" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Powerdowns">
   <object id="7" name="RIGHT" x="352" y="288" width="32" height="32"/>
