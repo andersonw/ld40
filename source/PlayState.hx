@@ -76,7 +76,7 @@ class PlayState extends FlxState
 	}
 
 	public function boxToTheFloor(box:Box, floor:Wall)
-	{
+	{		
 		if(box.isTouching(FlxObject.DOWN))
 		{
 			box.onFloor = true;
@@ -191,10 +191,19 @@ class PlayState extends FlxState
 		_player.onFloor = false;
 		for(box in _level.boxes){
 			if(box.onFloor){
-				if(!(FlxG.overlap(box.bottom, _level.boxes) ||
-				     FlxG.overlap(box.bottom, _level.walls)))
-				{
-					box.onFloor = false;
+				if(!FlxG.overlap(box.bottom, _level.walls)){
+					var flag = false;
+					for(otherBox in _level.boxes)
+					{
+						if(box!=otherBox){
+							if(FlxG.overlap(box.bottom, otherBox)){
+								flag=true;
+								break;
+							}
+						}
+					}
+					if(!flag)
+						box.onFloor = false;
 				}
 			}
 			box.oldX = box.x;
