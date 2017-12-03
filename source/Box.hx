@@ -40,9 +40,9 @@ class Box extends Wall
 
         if(carrier.facing == FlxObject.RIGHT)
         {
-            this.x = carrier.x + carrier.width + 5;
+            this.x = carrier.x + carrier.width + 3;
         }else{
-            this.x = carrier.x - carrier.width - 5;
+            this.x = carrier.x - carrier.width - 3;
         }
         this.y = carrier.y;
 
