@@ -3,6 +3,7 @@ package;
 class Registry
 {
     public static var levelList:Array<String> = [
+        AssetPaths.teleporters__tmx,
         AssetPaths.boxy__tmx,
         AssetPaths.tutorial_level_one__tmx,
         AssetPaths.jumping_test__tmx,

@@ -18,6 +18,11 @@ class Level extends TiledMap {
     public var powerdowns:FlxTypedGroup<Powerdown>;
     public var deathWalls:FlxTypedGroup<DeathWall>;
     public var signs:FlxTypedGroup<Sign>;
+    public var teleporters:FlxTypedGroup<Teleporter>;
+
+    public var teleporter1:Teleporter;
+    public var teleporter2:Teleporter;
+
 
     public var bounds:FlxRect;
 
@@ -26,6 +31,7 @@ class Level extends TiledMap {
     public var spawn:FlxPoint;
 
     public var totalPowerdowns:Int;
+    public var hasTeleporters:Bool = false;
 
     public function new(levelPath:String) {
         super(levelPath);
@@ -35,8 +41,14 @@ class Level extends TiledMap {
         powerdowns = new FlxTypedGroup<Powerdown>();
         deathWalls = new FlxTypedGroup<DeathWall>();
         signs = new FlxTypedGroup<Sign>();
+        teleporters = new FlxTypedGroup<Teleporter>();
 
-        entityGroups = [walls, boxes, powerdowns, deathWalls, signs];
+        entityGroups = [walls, 
+                        teleporters,
+                        boxes, 
+                        powerdowns, 
+                        deathWalls, 
+                        signs];
 
         for (layer in layers) {
             if (layer.type != TiledLayerType.OBJECT) continue;
@@ -66,12 +78,26 @@ class Level extends TiledMap {
                     case "Signs":
                         var levelObj:Sign = new Sign(obj.x, obj.y, obj.name);
                         signs.add(levelObj);
+                    case "Teleporters":
+                        var levelObj:Teleporter = new Teleporter(obj.x, obj.y);
+                        if(teleporter1 == null){
+                            teleporter1 = levelObj;
+                        }else{
+                            teleporter2 = levelObj;
+                            teleporter1.link(teleporter2);
+                            teleporter2.link(teleporter1);
+                        }
                 }
             }
         }
 
         totalPowerdowns = powerdowns.length;
+        if(teleporter2 != null){
 
+            hasTeleporters = true;
+            teleporters.add(teleporter1);
+            teleporters.add(teleporter2);
+        }
         // set level bounds (used for collision)
         updateBounds();
     }

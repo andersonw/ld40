@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxState;
+import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 
@@ -113,6 +114,48 @@ class PlayState extends FlxState
 		}	
 	}
 
+	public function swapTeleporters(){
+		if(!_level.hasTeleporters){
+			return;
+		}
+
+		var t1contents:FlxTypedGroup<FlxObject> = new FlxTypedGroup<FlxObject>();
+		var t2contents:FlxTypedGroup<FlxObject> = new FlxTypedGroup<FlxObject>();
+
+		for(entityGroup in _level.entityGroups)
+		{
+			for(entity in entityGroup)
+			{
+				if(_level.teleporter1.contains(entity))
+				{
+					t1contents.add(entity);
+				}
+				if(_level.teleporter2.contains(entity))
+				{
+					t2contents.add(entity);
+				}
+			}
+		}
+		if(_level.teleporter1.contains(_player)){
+			t1contents.add(_player);
+		}
+		if(_level.teleporter2.contains(_player)){
+			t2contents.add(_player);
+		}
+
+		for(entity in t1contents)
+		{
+			entity.x = _level.teleporter2.x + (entity.x - _level.teleporter1.x);
+			entity.y = _level.teleporter2.y + (entity.y - _level.teleporter1.y);
+		}
+
+		for(entity in t2contents)
+		{
+			entity.x = _level.teleporter1.x + (entity.x - _level.teleporter2.x);
+			entity.y = _level.teleporter1.y + (entity.y - _level.teleporter2.y);
+		}
+	}
+
 	public function resetLevel(){
 		FlxG.switchState(new PlayState());
 	}
@@ -161,6 +204,10 @@ class PlayState extends FlxState
 			}else{
 				FlxG.overlap(_player.grabBox, _level.boxes, carryBox);
 			}
+		}
+
+		if(InputManager.isJustPressed(V)){
+			swapTeleporters();
 		}
 
         if (FlxG.keys.justPressed.R) {
