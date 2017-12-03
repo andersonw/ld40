@@ -10,6 +10,11 @@ class Registry
         // real levels start here (should be ordered like how we want them in the actual game)
         AssetPaths.basic_movement__tmx,
         AssetPaths.tutorial_level_one__tmx,
+<<<<<<< HEAD
+=======
+        AssetPaths.tutorial_reset__tmx,
+        AssetPaths.box_intro_level__tmx,
+>>>>>>> d3b72f41e875ad203b4e532d8fef9c51a45f2624
         AssetPaths.jumping_test__tmx,
         AssetPaths.box_intro_level__tmx,
         AssetPaths.two_jumps__tmx,
