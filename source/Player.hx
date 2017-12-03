@@ -24,7 +24,9 @@ class Player extends FlxSprite
     public function new(?X:Float=0, ?Y:Float=0)
     {
         super(X, Y);
-        makeGraphic(32, 32, FlxColor.RED);
+        loadGraphic(AssetPaths.cat_sprite_sheet_trans__png, true, 32, 32);
+        animation.add("r",[0,1],5,true);
+        animation.add("l",[3,2],5,true);
         alpha = DEFAULT_ALPHA;
 
         grabBox = new FlxObject(0, 0, GRABBOX_WIDTH, GRABBOX_HEIGHT);
@@ -104,8 +106,10 @@ class Player extends FlxSprite
         var vX:Float = velocity.x;
         var vY:Float = velocity.y;
         if (_left) {
+            animation.play("l");
             vX -= HORIZONTAL_ACCELERATION;
         } else if (_right) {
+            animation.play("r");
             vX += HORIZONTAL_ACCELERATION;
         }
 
