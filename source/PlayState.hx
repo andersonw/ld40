@@ -31,6 +31,11 @@ class PlayState extends FlxState
 		add(_player);
 		add(_player.grabBox);
 
+		for(box in _level.boxes)
+		{
+			add(box.bottom);
+		}
+
 		FlxG.camera.follow(_player, TOPDOWN, 5);
 		resetLevelBounds();
 
