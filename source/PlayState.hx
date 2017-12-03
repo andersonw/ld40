@@ -21,6 +21,8 @@ class PlayState extends FlxState
 			add(entityGroup);
 		}
 		_player = new Player(_level.spawn.x, _level.spawn.y);
+
+		_player.resetMovement();
 		add(_player);
 		add(_player.grabBox);
 
