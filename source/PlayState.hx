@@ -34,7 +34,7 @@ class PlayState extends FlxState
 		FlxG.camera.follow(_player, TOPDOWN, 5);
 		resetLevelBounds();
 
-		_tooltip = new FlxText();
+		_tooltip = new FlxText(0,0,200);
 		_tooltip.setFormat(AssetPaths.pixelmix__ttf, 16, FlxColor.YELLOW);
 		_tooltip.visible = false;
 		_tooltip.alpha = 0.6;
