@@ -50,10 +50,10 @@ class Player extends FlxSprite
 
     public override function update(elapsed:Float):Void
     {
-        alignGrabbox();
         movement();
         
         super.update(elapsed);
+        alignGrabbox();
 
         if(isCarrying){
             carrying.alignWithCarrier();
