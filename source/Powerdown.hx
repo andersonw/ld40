@@ -24,10 +24,10 @@ class Powerdown extends FlxSprite
         super(X, Y);
         this.key = key;
         switch(key) {
-            case LEFT: loadGraphic("assets/images/leftarrow.png");
-            case RIGHT: loadGraphic("assets/images/rightarrow.png");
-            case DOWN: loadGraphic("assets/images/downarrow.png");
-            case UP: loadGraphic("assets/images/uparrow.png");
+            case LEFT: loadGraphic("assets/images/leftarrow_keyboard.png");
+            case RIGHT: loadGraphic("assets/images/rightarrow_keyboard.png");
+            case DOWN: loadGraphic("assets/images/downarrow_keyboard.png");
+            case UP: loadGraphic("assets/images/uparrow_keyboard.png");
             default: makeGraphic(32, 32, new FlxColor(0xff00ff00));
         }
 
