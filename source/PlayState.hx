@@ -3,6 +3,9 @@ package;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxState;
+import flixel.text.FlxText;
+import flixel.util.FlxColor;
+
 
 class PlayState extends FlxState
 {
@@ -11,6 +14,7 @@ class PlayState extends FlxState
     private var _levelFile:String;
 
 	private var _collected:Int;
+	private var _tooltip:FlxText;
 	
 	override public function create():Void
 	{
@@ -29,6 +33,12 @@ class PlayState extends FlxState
 		FlxG.camera.follow(_player, TOPDOWN, 5);
 		resetLevelBounds();
 
+		_tooltip = new FlxText();
+		_tooltip.setFormat(AssetPaths.pixelmix__ttf, 16, FlxColor.YELLOW);
+		_tooltip.visible = false;
+		_tooltip.alpha = 0.6;
+		add(_tooltip);
+
 		InputManager.resetDisabledKeys();
 		_collected = 0;
 
@@ -37,8 +47,6 @@ class PlayState extends FlxState
 
 	public function playerToTheFloor(player:Player, floor:Wall)
 	{
-		//trace(floor.wasTouching);
-		//if((floor.wasTouching & 256) != 0){	
 		if(player.isTouching(FlxObject.DOWN)){
 			player.onFloor = true;
 			player.canDash = true;
@@ -51,7 +59,6 @@ class PlayState extends FlxState
 		}
 
 		if(player.onFloor){
-			//if((floor.wasTouching & 1) != 0 || (floor.wasTouching & 16) != 0){
 			if(player.isTouching(FlxObject.LEFT) || 
 			   player.isTouching(FlxObject.RIGHT)){
 				player.y -= 3;
@@ -110,8 +117,21 @@ class PlayState extends FlxState
 		FlxG.switchState(new PlayState());
 	}
 
+	public function updateTooltip(player:Player, sign:Sign)
+	{
+		var helpText:String = sign.text;
+		if (helpText != "")
+		{
+			_tooltip.text = helpText;
+			_tooltip.x = sign.x+(sign.width-_tooltip.width)/2;
+			_tooltip.y = sign.y-_tooltip.height;
+			_tooltip.visible = true;
+		}
+	}
+
 	override public function update(elapsed:Float):Void
 	{
+		_tooltip.visible = false;
 		_player.onFloor = false;
 		for(box in _level.boxes){
 			box.onFloor = false;
@@ -132,6 +152,8 @@ class PlayState extends FlxState
 
 		FlxG.overlap(_player, _level.deathWalls, playerToTheDeath);
 		FlxG.overlap(_player, _level.powerdowns, playerToThePowerdown);
+
+		FlxG.overlap(_player, _level.signs, updateTooltip);
 
 		if(InputManager.isJustPressed(C)){
 			if(_player.isCarrying){
