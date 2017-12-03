@@ -19,6 +19,9 @@ class PlayerPhysics{
 
     public static inline var GRABBOX_WIDTH:Float = 40;
     public static inline var GRABBOX_HEIGHT:Float = 4;
+
+    public static inline var BOTTOM_HEIGHT:Float = 4;
+    public static inline var BOTTOM_MARGIN:Float = 4;
 }
 
 class BoxPhysics{
@@ -32,4 +35,5 @@ class BoxPhysics{
     public static inline var FLOOR_DRAG:Float = 0.85;
    
     public static inline var BOTTOM_HEIGHT:Float = 4;
+    public static inline var BOTTOM_MARGIN:Float = 4;
 }
