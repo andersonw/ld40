@@ -211,6 +211,21 @@ class PlayState extends FlxState
 						box.onFloor = false;
 				}
 			}
+			
+			var flag = false;
+			for(wall in _level.walls)
+			{
+				if(wall.wallType == ICE)
+				{
+					if(FlxG.overlap(box.bottom, wall))
+					{
+						flag = true;
+						break;
+					}
+				}
+			}
+			box.onIce = flag;
+			
 			box.oldX = box.x;
 			box.oldY = box.y;
 		}
