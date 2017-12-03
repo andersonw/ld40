@@ -40,6 +40,7 @@
   <object id="3" x="0" y="928" width="1440" height="32"/>
   <object id="4" x="1408" y="0" width="32" height="928"/>
  </objectgroup>
+ <objectgroup name="Signs"/>
  <objectgroup name="Powerdowns"/>
  <objectgroup name="Locations"/>
  <objectgroup name="Walls"/>
