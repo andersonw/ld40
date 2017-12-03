@@ -39,19 +39,30 @@ class Box extends Wall
         carried = true;
     }
 
+    public function getDroppedPosition():FlxPoint
+    {
+        var ny = carrier.y;
+        var nx = carrier.x;
+        if(carrier.facing == FlxObject.RIGHT)
+        {
+            nx += (carrier.width+3);
+        }
+        else
+        {
+            nx -= (carrier.width+3);
+        }
+
+        return new FlxPoint(nx, ny);
+    }
+
     public function getDropped(){
         this.velocity.x = carrier.velocity.x;
         this.velocity.y = carrier.velocity.y;
 
         // drop offset
 
-        if(carrier.facing == FlxObject.RIGHT)
-        {
-            this.x = carrier.x + carrier.width + 3;
-        }else{
-            this.x = carrier.x - carrier.width - 3;
-        }
-        this.y = carrier.y;
+        var newLoc = getDroppedPosition();
+        setPosition(newLoc.x, newLoc.y);
 
         carrier = null;
         carried = false;

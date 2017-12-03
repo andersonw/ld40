@@ -190,6 +190,20 @@ class PlayState extends FlxState
 		}
 	}
 
+	public function canDrop():Bool
+	{
+		var oldX = _player.carrying.x;
+		var oldY = _player.carrying.y;
+
+		var newPos = _player.carrying.getDroppedPosition();
+		_player.carrying.setPosition(newPos.x, newPos.y);
+
+		var isOverlapping = (FlxG.overlap(_player.carrying, _level.walls) 
+						  || FlxG.overlap(_player.carrying, _level.boxes));
+		_player.carrying.setPosition(oldX, oldY);
+		return !isOverlapping;
+	}
+
 	override public function update(elapsed:Float):Void
 	{
 		_tooltip.visible = false;
@@ -258,7 +272,7 @@ class PlayState extends FlxState
 		}
 
 		if(InputManager.isJustPressed(C)){
-			if(_player.isCarrying){
+			if(_player.isCarrying && canDrop()){
 				_player.drop();
 			}else{
 				FlxG.overlap(_player.grabBox, _level.boxes, carryBox);
