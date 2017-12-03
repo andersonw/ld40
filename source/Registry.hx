@@ -7,6 +7,7 @@ class Registry
         AssetPaths.teleporters__tmx,
         AssetPaths.boxy__tmx,
         AssetPaths.tutorial_level_one__tmx,
+        AssetPaths.box_intro_level__tmx,
         AssetPaths.jumping_test__tmx,
         AssetPaths.one_jump__tmx,
         AssetPaths.tutorial_level_two__tmx, 
