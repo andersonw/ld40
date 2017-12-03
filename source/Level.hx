@@ -3,6 +3,7 @@ package;
 import flixel.addons.editors.tiled.TiledLayer;
 import flixel.addons.editors.tiled.TiledMap;
 import flixel.addons.editors.tiled.TiledObjectLayer;
+import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.group.FlxGroup;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
@@ -15,8 +16,9 @@ class Level extends TiledMap {
     public var walls:FlxTypedGroup<Wall>;
     public var boxes:FlxTypedGroup<Box>;
     public var powerdowns:FlxTypedGroup<Powerdown>;
-    public var powerdownSprites:FlxTypedGroup<FlxSprite>;
     public var deathWalls:FlxTypedGroup<DeathWall>;
+
+    public var effects:FlxTypedGroup<FlxEffectSprite>;
 
     public var bounds:FlxRect;
 
@@ -32,10 +34,10 @@ class Level extends TiledMap {
         walls = new FlxTypedGroup<Wall>();
         boxes = new FlxTypedGroup<Box>();
         powerdowns = new FlxTypedGroup<Powerdown>();
-        powerdownSprites = new FlxTypedGroup<FlxSprite>();
         deathWalls = new FlxTypedGroup<DeathWall>();
+        effects = new FlxTypedGroup<FlxEffectSprite>();
 
-        entityGroups = [walls, boxes, powerdowns, powerdownSprites, deathWalls];
+        entityGroups = [walls, boxes, powerdowns, deathWalls, effects];
 
         for (layer in layers) {
             if (layer.type != TiledLayerType.OBJECT) continue;
@@ -59,7 +61,7 @@ class Level extends TiledMap {
                     case "Powerdowns":
                         var levelObj:Powerdown = new Powerdown(FlxKey.fromString(obj.name), obj.x, obj.y);
                         powerdowns.add(levelObj);
-                        powerdownSprites.add(levelObj.sprite);
+                        effects.add(levelObj.effectSprite);
                     case "Death":
                         var levelObj:DeathWall = new DeathWall(obj.x, obj.y, obj.width, obj.height);
                         deathWalls.add(levelObj);
