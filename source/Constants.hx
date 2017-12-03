@@ -30,4 +30,6 @@ class BoxPhysics{
     public static inline var VERTICAL_DRAG:Float = 0.99;
     public static inline var HORIZONTAL_DRAG:Float = 1.00;
     public static inline var FLOOR_DRAG:Float = 0.85;
+   
+    public static inline var BOTTOM_HEIGHT:Float = 4;
 }

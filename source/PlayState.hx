@@ -77,13 +77,19 @@ class PlayState extends FlxState
 
 	public function boxToTheFloor(box:Box, floor:Wall)
 	{
-		// trace(floor.wasTouching);
-		box.onFloor = true;
+		if(box.isTouching(FlxObject.DOWN))
+		{
+			box.onFloor = true;
+			var fixY = floor.y - box.height;
+			if(Math.abs(fixY - box.oldY) < 5){
+				box.oldY = fixY;
+			}
 
-		if(floor.wallType == ICE){
-			box.onIce = true;
-		}else{
-			box.onIce = false;
+			if(floor.wallType == ICE){
+				box.onIce = true;
+			}else{
+				box.onIce = false;
+			}
 		}
 	}
 
@@ -184,7 +190,15 @@ class PlayState extends FlxState
 		_tooltip.visible = false;
 		_player.onFloor = false;
 		for(box in _level.boxes){
-			box.onFloor = false;
+			if(box.onFloor){
+				if(!(FlxG.overlap(box.bottom, _level.boxes) ||
+				     FlxG.overlap(box.bottom, _level.walls)))
+				{
+					box.onFloor = false;
+				}
+			}
+			box.oldX = box.x;
+			box.oldY = box.y;
 		}
 
 		// only collide with boxes you're not carrying
@@ -204,6 +218,15 @@ class PlayState extends FlxState
 		FlxG.overlap(_player, _level.powerdowns, playerToThePowerdown);
 
 		FlxG.overlap(_player, _level.signs, updateTooltip);
+
+		for(box in _level.boxes)
+		{
+			if(box.onFloor)
+			{
+				box.y = box.oldY;
+				box.velocity.y = 0;
+			}
+		}
 
 		if(InputManager.isJustPressed(C)){
 			if(_player.isCarrying){

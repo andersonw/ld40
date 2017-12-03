@@ -17,11 +17,18 @@ class Box extends Wall
     public var onFloor:Bool = false;
     public var onIce:Bool = false;
 
+    public var oldX:Float;
+    public var oldY:Float;
+
+    public var bottom:FlxObject;
+
     public function new(?X:Float=0, ?Y:Float=0, ?width:Int=32, ?height:Int=32)
     {
         super(X, Y, width, height);
         loadGraphic(AssetPaths.cardboard_box__png);
         immovable=false;
+
+        bottom = new FlxObject(0,0,width, BOTTOM_HEIGHT);
     }
 
     public function getCarried(carrier:FlxSprite){
@@ -48,6 +55,9 @@ class Box extends Wall
 
         carrier = null;
         carried = false;
+
+        onFloor = false;
+        onIce = false;
     }
 
     public override function update(elapsed:Float):Void
@@ -55,6 +65,10 @@ class Box extends Wall
         movement();
 
         super.update(elapsed);
+
+        //align bottom
+        bottom.x = x;
+        bottom.y = y + height - BOTTOM_HEIGHT/2;
     }
 
     public function alignWithCarrier():Void

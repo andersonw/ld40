@@ -55,8 +55,8 @@ class Player extends FlxSprite
     }
 
     public function alignGrabbox(){
-        grabBox.x = this.getMidpoint().x - GRABBOX_WIDTH/2;
-        grabBox.y = this.getMidpoint().y - GRABBOX_HEIGHT/2;
+        grabBox.x = getMidpoint().x - GRABBOX_WIDTH/2;
+        grabBox.y = getMidpoint().y - GRABBOX_HEIGHT/2;
     }
 
     public override function update(elapsed:Float):Void
