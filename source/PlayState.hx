@@ -63,6 +63,13 @@ class PlayState extends FlxState
 			if(player.isTouching(FlxObject.LEFT) || 
 			   player.isTouching(FlxObject.RIGHT)){
 				player.y -= 3;
+				if(player.isTouching(FlxObject.LEFT)){
+					player.x += 2;
+				}
+				else
+				{
+					player.x -= 2;
+				}
 			}
 		}
 		
