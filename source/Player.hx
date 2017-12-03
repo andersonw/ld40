@@ -25,8 +25,8 @@ class Player extends FlxSprite
     {
         super(X, Y);
         loadGraphic(AssetPaths.cat_sprite_sheet_trans__png, true, 32, 32);
-        animation.add("r",[0,1],5,true);
-        animation.add("l",[3,2],5,true);
+        animation.add("r",[0,1],10,true);
+        animation.add("l",[3,2],10,true);
         alpha = DEFAULT_ALPHA;
 
         grabBox = new FlxObject(0, 0, GRABBOX_WIDTH, GRABBOX_HEIGHT);
