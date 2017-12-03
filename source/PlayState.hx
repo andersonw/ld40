@@ -26,7 +26,7 @@ class PlayState extends FlxState
 		add(_player);
 		add(_player.grabBox);
 
-		FlxG.camera.follow(_player);
+		FlxG.camera.follow(_player, TOPDOWN, 5);
 		resetLevelBounds();
 
 		InputManager.resetDisabledKeys();
@@ -117,26 +117,17 @@ class PlayState extends FlxState
 			box.onFloor = false;
 		}
 
-		//hacky fix to make boxes not move when players run into them
-		/*
+		// only collide with boxes you're not carrying
 		for(box in _level.boxes){
-			if(!box.carried) box.immovable=true;
-		}*/
-		FlxG.collide(_player, _level.boxes, playerToTheFloor);
-		/*
-		for(box in _level.boxes){
-			box.immovable=false;
-		}*/
+			if(!box.carried){
+				FlxG.collide(_player, box, playerToTheFloor);
+			}
+		}
+
 		FlxG.collide(_level.boxes, _level.boxes, boxToTheFloor);
 		FlxG.collide(_level.boxes, _level.walls, boxToTheFloor);
 
 		FlxG.collide(_player, _level.walls, playerToTheFloor);
-		/*if(_player.isCarrying){
-			FlxG.overlap(_player.carrying, _level.walls, 
-			function(box:Box, wall:Wall){
-				_player.realignCarrying();
-			});
-		}*/
 		
 
 		FlxG.overlap(_player, _level.deathWalls, playerToTheDeath);

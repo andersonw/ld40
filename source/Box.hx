@@ -25,7 +25,7 @@ class Box extends Wall
     public function getCarried(carrier:FlxSprite){
         this.carrier = carrier;
         //carrierOffset = new FlxPoint(x - carrier.x, y - carrier.y);
-        carrierOffset = new FlxPoint(0, -(height+5));
+        carrierOffset = new FlxPoint(0, 0);
         
         carried = true;
     }
