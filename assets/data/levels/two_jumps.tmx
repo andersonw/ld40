@@ -47,7 +47,7 @@
  </objectgroup>
  <objectgroup name="Powerdowns">
   <object id="22" name="UP" x="448" y="384" width="32" height="32"/>
-  <object id="19" name="LEFT" x="544" y="384" width="32" height="32"/>
+  <object id="19" name="LEFT" x="576" y="416" width="32" height="32"/>
   <object id="29" name="RIGHT" x="512" y="544" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Locations">

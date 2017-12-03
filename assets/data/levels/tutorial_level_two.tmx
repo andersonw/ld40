@@ -53,9 +53,7 @@
   <object id="7" name="LEFT" x="579" y="448" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Signs">
-  <object id="11" name="Cats slide on snow, retaining their momentum" x="256" y="448" width="32" height="32"/>
+  <object id="11" name="Cats slide on ice, retaining their momentum" x="256" y="448" width="32" height="32"/>
  </objectgroup>
- <objectgroup name="Boxes">
-  <object id="9" name="box" x="371" y="298" width="32" height="32"/>
- </objectgroup>
+ <objectgroup name="Boxes"/>
 </map>
