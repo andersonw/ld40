@@ -112,6 +112,9 @@ class Player extends FlxSprite
             animation.play("r");
             vX += HORIZONTAL_ACCELERATION;
         }
+        else {
+            animation.reset();
+        }
 
         vY = vY + GRAVITY;
 
