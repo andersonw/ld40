@@ -37,6 +37,7 @@ class PlayState extends FlxState
 
 	public function playerToTheFloor(player:Player, floor:Wall)
 	{
+		//trace(floor.wasTouching);
 		if((floor.wasTouching & 256) != 0){	
 			player.onFloor = true;
 			player.canDash = true;
@@ -47,6 +48,13 @@ class PlayState extends FlxState
 				player.onIce = false;
 			}
 		}
+
+		if(player.onFloor){
+			if((floor.wasTouching & 1) != 0 || (floor.wasTouching & 16) != 0){
+				player.y -= 3;
+			}
+		}
+		
 	}
 
 	public function boxToTheFloor(box:Box, floor:Wall)
