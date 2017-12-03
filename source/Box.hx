@@ -1,8 +1,10 @@
 package;
 
+import flixel.FlxObject;
+import flixel.FlxSprite;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
-import flixel.FlxSprite;
+
 
 import Constants.BoxPhysics.*;
 
@@ -33,6 +35,16 @@ class Box extends Wall
     public function getDropped(){
         this.velocity.x = carrier.velocity.x;
         this.velocity.y = carrier.velocity.y;
+
+        // drop offset
+
+        if(carrier.facing == FlxObject.RIGHT)
+        {
+            this.x = carrier.x + carrier.width + 5;
+        }else{
+            this.x = carrier.x - carrier.width - 5;
+        }
+        this.y = carrier.y;
 
         carrier = null;
         carried = false;

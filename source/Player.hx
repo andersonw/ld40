@@ -28,6 +28,7 @@ class Player extends FlxSprite
         animation.add("r",[0,1],10,true);
         animation.add("l",[3,2],10,true);
         alpha = DEFAULT_ALPHA;
+        facing = FlxObject.RIGHT;
 
         grabBox = new FlxObject(0, 0, GRABBOX_WIDTH, GRABBOX_HEIGHT);
     }
@@ -44,13 +45,13 @@ class Player extends FlxSprite
     }
 
     public function drop(){
-        carrying.getDropped();
-        carrying = null;
-        isCarrying = false;
-
         height = 32;   
         offset.y = 0;
         y += 32;     
+
+        carrying.getDropped();
+        carrying = null;
+        isCarrying = false;
     }
 
     public function alignGrabbox(){
@@ -129,9 +130,11 @@ class Player extends FlxSprite
         if (_left) {
             animation.play("l");
             vX -= HORIZONTAL_ACCELERATION;
+            facing = FlxObject.LEFT;
         } else if (_right) {
             animation.play("r");
             vX += HORIZONTAL_ACCELERATION;
+            facing = FlxObject.RIGHT;
         }
         else {
             animation.reset();
