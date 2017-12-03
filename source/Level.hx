@@ -43,8 +43,8 @@ class Level extends TiledMap {
         signs = new FlxTypedGroup<Sign>();
         teleporters = new FlxTypedGroup<Teleporter>();
 
-        entityGroups = [walls, 
-                        teleporters,
+        entityGroups = [teleporters,
+                        walls, 
                         boxes, 
                         powerdowns, 
                         deathWalls, 
