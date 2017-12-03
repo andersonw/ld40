@@ -28,6 +28,7 @@ class Powerdown extends FlxSprite
             case RIGHT: loadGraphic("assets/images/rightarrow_keyboard.png");
             case DOWN: loadGraphic("assets/images/downarrow_keyboard.png");
             case UP: loadGraphic("assets/images/uparrow_keyboard.png");
+            case C: loadGraphic("assets/images/c_keyboard.png");
             default: makeGraphic(32, 32, new FlxColor(0xff00ff00));
         }
 
