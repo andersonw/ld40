@@ -43,7 +43,7 @@
     <property name="type" value="ice"/>
    </properties>
   </object>
-  <object id="3" name="wall" x="156" y="525" width="84" height="101"/>
+  <object id="3" name="wall" x="146" y="525" width="108" height="101"/>
  </objectgroup>
  <objectgroup name="Death">
   <object id="11" x="-384" y="96" width="1632" height="32"/>
@@ -54,8 +54,8 @@
  <objectgroup name="Powerdowns">
   <object id="4" name="RIGHT" x="185" y="484" width="33" height="32"/>
   <object id="5" name="RIGHT" x="184.5" y="633" width="33" height="32"/>
-  <object id="7" name="UP" x="450" y="505" width="32" height="32"/>
-  <object id="8" name="UP" x="449" y="601" width="32" height="32"/>
-  <object id="9" name="LEFT" x="725" y="545" width="32" height="32"/>
+  <object id="7" name="UP" x="478" y="506" width="32" height="32"/>
+  <object id="8" name="UP" x="478" y="598" width="32" height="32"/>
+  <object id="9" name="LEFT" x="743" y="546" width="32" height="32"/>
  </objectgroup>
 </map>

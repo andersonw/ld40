@@ -18,8 +18,6 @@ class Level extends TiledMap {
     public var powerdowns:FlxTypedGroup<Powerdown>;
     public var deathWalls:FlxTypedGroup<DeathWall>;
 
-    public var effects:FlxTypedGroup<FlxEffectSprite>;
-
     public var bounds:FlxRect;
 
     public var entityGroups:Array<FlxTypedGroup<Dynamic>>;
@@ -35,9 +33,8 @@ class Level extends TiledMap {
         boxes = new FlxTypedGroup<Box>();
         powerdowns = new FlxTypedGroup<Powerdown>();
         deathWalls = new FlxTypedGroup<DeathWall>();
-        effects = new FlxTypedGroup<FlxEffectSprite>();
 
-        entityGroups = [walls, boxes, powerdowns, deathWalls, effects];
+        entityGroups = [walls, boxes, powerdowns, deathWalls];
 
         for (layer in layers) {
             if (layer.type != TiledLayerType.OBJECT) continue;
@@ -61,7 +58,6 @@ class Level extends TiledMap {
                     case "Powerdowns":
                         var levelObj:Powerdown = new Powerdown(FlxKey.fromString(obj.name), obj.x, obj.y);
                         powerdowns.add(levelObj);
-                        effects.add(levelObj.effectSprite);
                     case "Death":
                         var levelObj:DeathWall = new DeathWall(obj.x, obj.y, obj.width, obj.height);
                         deathWalls.add(levelObj);

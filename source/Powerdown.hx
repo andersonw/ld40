@@ -9,11 +9,14 @@ import flixel.addons.effects.chainable.FlxShakeEffect;
 import flixel.addons.effects.chainable.FlxWaveEffect;
 import flixel.FlxG;
 import flixel.input.keyboard.FlxKey;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 
 class Powerdown extends FlxSprite
 {
     public var key:FlxKey;
-    public var effectSprite:FlxEffectSprite;
+
+    private var _tween:FlxTween;
     //public var sprite:FlxSprite;
 
     public function new(key:FlxKey, ?X:Float=0, ?Y:Float=0)
@@ -29,19 +32,22 @@ class Powerdown extends FlxSprite
         }
 
         // var _shake = new FlxShakeEffect(5, 1, null, FlxAxes.Y);
-        var _wave = new FlxRainbowEffect(0.3);
-        effectSprite = new FlxEffectSprite(this, [_wave]);
-        effectSprite.setPosition(X,Y);
-        visible = false;
+        // var _wave = new FlxRainbowEffect(0.3);
+        // effectSprite = new FlxEffectSprite(this, [_wave]);
+        // effectSprite.setPosition(X,Y);
+        // visible = false;
         //trace(width);
         //trace(height);
+        var tweenDelay:Float = Math.random()/2;
+        _tween = FlxTween.tween(this, { x: this.x, y: this.y-5 }, 2, 
+                                { type: FlxTween.PINGPONG, ease: FlxEase.quadInOut, startDelay: tweenDelay });
 
         immovable=true;
     }
 
     public override function kill()
     {
+        _tween.cancel();
         super.kill();
-        effectSprite.kill();
     }
 }

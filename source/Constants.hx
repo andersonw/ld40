@@ -4,7 +4,7 @@ import flixel.util.FlxColor;
 import flixel.FlxSprite;
 
 class PlayerPhysics{
-    public static inline var GRAVITY:Float = 10;
+    public static inline var GRAVITY:Float = 12;
 
     public static inline var HORIZONTAL_TERMINAL_SPEED:Float = 200;
     public static inline var VERTICAL_TERMINAL_SPEED:Float = 520;
