@@ -28,7 +28,7 @@ class Box extends Wall
         loadGraphic(AssetPaths.cardboard_box__png);
         immovable=false;
 
-        bottom = new FlxObject(0,0,width, BOTTOM_HEIGHT);
+        bottom = new FlxObject(0,0,width-4, BOTTOM_HEIGHT);
     }
 
     public function getCarried(carrier:FlxSprite){
@@ -67,7 +67,7 @@ class Box extends Wall
         super.update(elapsed);
 
         //align bottom
-        bottom.x = x;
+        bottom.x = x+2;
         bottom.y = y + height - BOTTOM_HEIGHT/2;
     }
 
