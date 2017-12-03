@@ -36,6 +36,10 @@ class Player extends FlxSprite
         isCarrying = true;
         carrying = box;
 
+        height = 64;
+        offset.y = -32;
+        y -= 32;
+
         box.getCarried(this);
     }
 
@@ -43,6 +47,10 @@ class Player extends FlxSprite
         carrying.getDropped();
         carrying = null;
         isCarrying = false;
+
+        height = 32;   
+        offset.y = 0;
+        y += 32;     
     }
 
     public function alignGrabbox(){
