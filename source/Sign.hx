@@ -12,8 +12,7 @@ class Sign extends Wall
     public function new(?X:Float=0, ?Y:Float=0, ?text='')
     {
         super(X, Y, SIGN_WIDTH, SIGN_HEIGHT);
-        makeGraphic(SIGN_WIDTH, SIGN_HEIGHT, 
-                    new FlxColor(0xff515151));
+        loadGraphic(AssetPaths.signpost__png);
         this.text = text;
         immovable=true;
     }
