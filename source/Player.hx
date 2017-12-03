@@ -62,6 +62,12 @@ class Player extends FlxSprite
         }
     }
 
+    public function resetMovement():Void
+    {
+        velocity.x = 0;
+        velocity.y = 0;
+    }
+
     private function movement():Void
     {
         // adapted from http://haxeflixel.com/documentation/groundwork/
