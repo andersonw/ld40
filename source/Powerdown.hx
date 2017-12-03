@@ -4,6 +4,7 @@ import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.util.FlxAxes;
+import flixel.addons.effects.chainable.FlxRainbowEffect;
 import flixel.addons.effects.chainable.FlxShakeEffect;
 import flixel.addons.effects.chainable.FlxWaveEffect;
 import flixel.FlxG;
@@ -28,7 +29,7 @@ class Powerdown extends FlxSprite
         }
 
         // var _shake = new FlxShakeEffect(5, 1, null, FlxAxes.Y);
-        var _wave = new FlxWaveEffect(FlxWaveMode.ALL);
+        var _wave = new FlxRainbowEffect(0.3);
         effectSprite = new FlxEffectSprite(this, [_wave]);
         effectSprite.setPosition(X,Y);
         visible = false;
