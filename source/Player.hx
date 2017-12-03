@@ -68,6 +68,13 @@ class Player extends FlxSprite
         velocity.y = 0;
     }
 
+    public function realignCarrying(){
+        x = carrying.x - carrying.carrierOffset.x;
+        y = carrying.y - carrying.carrierOffset.y;
+
+        resetMovement();
+    }
+
     private function movement():Void
     {
         // adapted from http://haxeflixel.com/documentation/groundwork/

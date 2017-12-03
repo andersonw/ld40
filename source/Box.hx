@@ -49,6 +49,8 @@ class Box extends Wall
     {
         x = carrier.x + carrierOffset.x;
         y = carrier.y + carrierOffset.y;
+        velocity.x = carrier.velocity.x;
+        velocity.y = carrier.velocity.y;
     }
 
     private function movement():Void
