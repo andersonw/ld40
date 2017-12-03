@@ -18,7 +18,6 @@ class Box extends Wall
     public function new(?X:Float=0, ?Y:Float=0, ?width:Int=32, ?height:Int=32)
     {
         super(X, Y, width, height);
-        wallType = Wall.WallType.ICE;
         loadGraphic(AssetPaths.cardboard_box__png);
         immovable=false;
     }
@@ -50,6 +49,8 @@ class Box extends Wall
     {
         x = carrier.x + carrierOffset.x;
         y = carrier.y + carrierOffset.y;
+        velocity.x = carrier.velocity.x;
+        velocity.y = carrier.velocity.y;
     }
 
     private function movement():Void

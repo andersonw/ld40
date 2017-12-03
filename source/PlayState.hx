@@ -38,7 +38,8 @@ class PlayState extends FlxState
 	public function playerToTheFloor(player:Player, floor:Wall)
 	{
 		//trace(floor.wasTouching);
-		if((floor.wasTouching & 256) != 0){	
+		//if((floor.wasTouching & 256) != 0){	
+		if(player.isTouching(FlxObject.DOWN)){
 			player.onFloor = true;
 			player.canDash = true;
 
@@ -50,7 +51,9 @@ class PlayState extends FlxState
 		}
 
 		if(player.onFloor){
-			if((floor.wasTouching & 1) != 0 || (floor.wasTouching & 16) != 0){
+			//if((floor.wasTouching & 1) != 0 || (floor.wasTouching & 16) != 0){
+			if(player.isTouching(FlxObject.LEFT) || 
+			   player.isTouching(FlxObject.RIGHT)){
 				player.y -= 3;
 			}
 		}
@@ -128,7 +131,14 @@ class PlayState extends FlxState
 		FlxG.collide(_level.boxes, _level.walls, boxToTheFloor);
 
 		FlxG.collide(_player, _level.walls, playerToTheFloor);
+		/*if(_player.isCarrying){
+			FlxG.overlap(_player.carrying, _level.walls, 
+			function(box:Box, wall:Wall){
+				_player.realignCarrying();
+			});
+		}*/
 		
+
 		FlxG.overlap(_player, _level.deathWalls, playerToTheDeath);
 		FlxG.overlap(_player, _level.powerdowns, playerToThePowerdown);
 
