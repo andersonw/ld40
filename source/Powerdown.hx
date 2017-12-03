@@ -27,11 +27,11 @@ class Powerdown extends FlxSprite
             default: makeGraphic(32, 32, new FlxColor(0xff00ff00));
         }
 
-        var _shake = new FlxShakeEffect(5, 1, null, FlxAxes.Y);
+        // var _shake = new FlxShakeEffect(5, 1, null, FlxAxes.Y);
         var _wave = new FlxWaveEffect(FlxWaveMode.ALL);
-        effectSprite = new FlxEffectSprite(this, [_wave, _shake]);
+        effectSprite = new FlxEffectSprite(this, [_wave]);
         effectSprite.setPosition(X,Y);
-
+        visible = false;
         //trace(width);
         //trace(height);
 
