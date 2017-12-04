@@ -44,7 +44,7 @@ class Registry
         "Cats love adventures! ",
         "Cats love big spaces! ",
         "Cats love boxes! ",
-        "Cats love reaching high places! ",
+        "Cats love heights! ",
         "Cats love skiing! ",
         "Cats love puzzles! "
     ];
