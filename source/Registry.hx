@@ -11,8 +11,6 @@ class Registry
 {
     public static var levelList:Array<String> = [
         // test levels
-        AssetPaths.box_ice_test__tmx,
-        AssetPaths.skiing__tmx,
         AssetPaths.box_hell__tmx,
         AssetPaths.teleporters__tmx,
         AssetPaths.boxy__tmx,
@@ -27,6 +25,8 @@ class Registry
         AssetPaths.long_icy_floor__tmx,
         AssetPaths.six_platforms__tmx,
         AssetPaths.box_intro_level__tmx,
+        AssetPaths.box_ice_test__tmx,
+        AssetPaths.skiing__tmx,
         AssetPaths.boxy_advanced__tmx
     ];
 
