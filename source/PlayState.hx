@@ -15,6 +15,7 @@ class PlayState extends FlxTransitionableState
 	private var _level:Level;
 	private var _player:Player;
     private var _levelFile:String;
+    private var _hud:HUD;
 
 	private var _collected:Int;
 	private var _tooltip:FlxText;
@@ -66,7 +67,15 @@ class PlayState extends FlxTransitionableState
 		InputManager.resetDisabledKeys();
 		_collected = 0;
 
+		createHud(_level.powerdowns);
+
 		super.create();
+	}
+
+	private function createHud(powerdowns:FlxTypedGroup<Powerdown>)
+	{
+		this._hud = new HUD(powerdowns);
+		add(_hud);
 	}
 
 	public function playerToTheFloor(player:Player, floor:Wall)
@@ -141,6 +150,8 @@ class PlayState extends FlxTransitionableState
             _finishSound.play();
         	new FlxTimer().start(0, nextLevel,1);
 		}
+
+		_hud.updateHUD(powerdown.key);
 	}
 
 	public function playerToTheDeath(player:Player, death:DeathWall){
