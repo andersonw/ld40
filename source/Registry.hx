@@ -15,6 +15,7 @@ class Registry
         AssetPaths.tutorial_level_two__tmx, 
         AssetPaths.big_cave__tmx,
         AssetPaths.long_icy_floor__tmx,
+        AssetPaths.six_platforms__tmx,
         AssetPaths.box_intro_level__tmx,
         AssetPaths.boxy_advanced__tmx
     ];
