@@ -20,6 +20,8 @@ class MenuState extends FlxState
 
 	private var _shrinkSound:FlxSound;
 
+	private var _helpTextTweening = false;
+
 	override public function create():Void
 	{
 		super.create();
@@ -47,6 +49,15 @@ class MenuState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
+
+		if (!_helpTextTweening) {
+			_helpTextTweening = true;
+			var newX:Float = Math.random() * (FlxG.width - helpText.width);
+			var newY:Float = Math.random() * (FlxG.height - helpText.height);
+			var finishTween = function(tween:FlxTween) {_helpTextTweening = false;}
+			FlxTween.tween(helpText, {x: newX, y: newY}, 1,
+						   {type: FlxTween.ONESHOT, ease: FlxEase.sineInOut, onComplete: finishTween});
+		}
 
 		if (FlxG.keys.justPressed.SPACE)
 		{
