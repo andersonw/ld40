@@ -36,7 +36,7 @@ class EndState extends FlxState
 		{
 			FlxG.sound.music.stop();
 			FlxG.sound.music = null;
-			FlxG.switchState(new PlayState());
+			FlxG.switchState(new MenuState());
 		}
 	}
 }
