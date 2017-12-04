@@ -3,13 +3,14 @@ package;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxState;
+import flixel.addons.transition.FlxTransitionableState;
 import flixel.system.FlxSound;
 import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 
-class PlayState extends FlxState
+class PlayState extends FlxTransitionableState
 {
 	private var _level:Level;
 	private var _player:Player;
@@ -24,6 +25,8 @@ class PlayState extends FlxState
 	
 	override public function create():Void
 	{
+		Registry.init();
+
 		_levelFile = Registry.levelList[Registry.currLevel];
         _level = new Level(_levelFile);
 
@@ -136,7 +139,7 @@ class PlayState extends FlxState
 		_collected += 1;
 		if(_collected == _level.totalPowerdowns){
             _finishSound.play();
-            new FlxTimer().start(1, nextLevel,1);
+        	new FlxTimer().start(0, nextLevel,1);
 		}
 	}
 
@@ -146,8 +149,7 @@ class PlayState extends FlxState
 	}
 
 	public function carryBox(grabBox:FlxObject, box:Box){
-		if(!box.carried && !_player.isCarrying)
-		{
+		if(!box.carried && !_player.isCarrying) {
             _grabSound.play();
 			_player.carry(box);
 		}
@@ -157,10 +159,9 @@ class PlayState extends FlxState
 	{
 		if(Registry.currLevel < (Registry.levelList.length - 1)) {
 			Registry.currLevel += 1;
-			FlxG.switchState(new PlayState());
-		}
-		else
-		{
+			transOut = Registry.defaultTransOut;
+			FlxG.switchState(new PlayState(Registry.defaultTransIn));
+		} else {
 			// FlxG.switchState(new EndState());
 		}	
 	}

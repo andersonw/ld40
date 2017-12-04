@@ -1,5 +1,12 @@
 package;
 
+import flixel.addons.transition.FlxTransitionableState;
+import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileCircle;
+import flixel.addons.transition.TransitionData;
+import flixel.graphics.FlxGraphic;
+import flixel.math.FlxPoint;
+import flixel.util.FlxColor;
+
 class Registry
 {
     public static var levelList:Array<String> = [
@@ -24,4 +31,34 @@ class Registry
     ];
 
     public static var currLevel:Int = 0; 
+
+    public static var defaultTransIn:TransitionData;
+    public static var defaultTransOut:TransitionData;
+
+    private static var _initialized:Bool = false;
+
+    public static function init() {
+        if (_initialized) return;
+
+        _initialized = true;
+
+		defaultTransIn = new TransitionData();
+		defaultTransOut = new TransitionData();
+			
+		var diamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileCircle);
+		diamond.persist = true;
+		diamond.destroyOnNoUse = false;
+			
+        defaultTransIn.color = FlxColor.WHITE;
+        defaultTransOut.color = FlxColor.WHITE;
+        defaultTransIn.direction = new FlxPoint(1, 0);
+        defaultTransOut.direction = new FlxPoint(-1, 0);
+        defaultTransIn.duration = 1.0;
+        defaultTransOut.duration = 1.0;
+        defaultTransIn.type = TransitionType.FADE;
+        defaultTransOut.type = TransitionType.FADE;
+		defaultTransIn.tileData = { asset: diamond, width: 32, height: 32 };
+		defaultTransOut.tileData = { asset: diamond, width: 32, height: 32 };
+    }
+
 }
