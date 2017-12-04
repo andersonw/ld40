@@ -24,8 +24,9 @@ class MenuState extends FlxState
 
 		bgColor = new FlxColor(0xFFFFC0CB);
 
-		titleText = new FlxText(40, 100, 0, "Keyboard Kitten");
-		titleText.setFormat(AssetPaths.Action_Man__ttf, 48, FlxColor.RED);
+		titleText = new FlxText(40, 100, 0, "Keyboard Kitten ");
+		titleText.setFormat(AssetPaths.Action_Man_Shaded_Italic__ttf, 48, FlxColor.RED);
+		titleText.width += 10;
 		add(titleText);
 
 		helpText = new FlxText(300, 250, 0, "[SPACE] START");
