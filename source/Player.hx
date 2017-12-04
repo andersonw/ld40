@@ -20,6 +20,7 @@ class Player extends FlxSprite
     public var carrying:Box;
 
     public var grabBox:FlxObject;
+    public var bottom:FlxObject;
 
     public function new(?X:Float=0, ?Y:Float=0)
     {
@@ -31,6 +32,7 @@ class Player extends FlxSprite
         facing = FlxObject.RIGHT;
 
         grabBox = new FlxObject(0, 0, GRABBOX_WIDTH, GRABBOX_HEIGHT);
+        bottom = new FlxObject(0, 0, width-BOTTOM_MARGIN, BOTTOM_HEIGHT);
     }
 
     public function carry(box:Box){
@@ -65,6 +67,10 @@ class Player extends FlxSprite
         
         super.update(elapsed);
         alignGrabbox();
+        
+        //align bottom
+        bottom.x = x+BOTTOM_MARGIN/2;
+        bottom.y = y + height - BOTTOM_HEIGHT/2;
 
         if(isCarrying){
             carrying.alignWithCarrier();
