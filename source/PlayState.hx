@@ -50,14 +50,14 @@ class PlayState extends FlxState
 		_tooltip.alpha = 0.6;
 		add(_tooltip);
 
-        _deathSound = FlxG.sound.load(AssetPaths.death__wav);
-        _powerdownSound = FlxG.sound.load(AssetPaths.powerdown__wav);
-        _grabSound = FlxG.sound.load(AssetPaths.grab__wav);
-        _finishSound = FlxG.sound.load(AssetPaths.finish__wav);
+        _deathSound = FlxG.sound.load(AssetPaths.death__wav, 0.3);
+        _powerdownSound = FlxG.sound.load(AssetPaths.powerdown__wav, 0.3);
+        _grabSound = FlxG.sound.load(AssetPaths.grab__wav, 0.3);
+        _finishSound = FlxG.sound.load(AssetPaths.finish__wav, 0.3);
 
 		if (FlxG.sound.music == null)
 		{
-			FlxG.sound.playMusic(AssetPaths.amazing_song__wav, 1, true);
+			FlxG.sound.playMusic(AssetPaths.amazing_song__wav, 0.3, true);
 		}
 
 		InputManager.resetDisabledKeys();

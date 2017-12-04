@@ -31,7 +31,7 @@ class Player extends FlxSprite
         loadGraphic(AssetPaths.cat_sprite_sheet_2_trans__png, true, 32, 32);
         animation.add("r",[0,1],10,true);
         animation.add("l",[3,2],10,true);
-        _jumpSound = FlxG.sound.load(AssetPaths.jump__wav);
+        _jumpSound = FlxG.sound.load(AssetPaths.jump__wav, 0.3);
         alpha = DEFAULT_ALPHA;
         facing = FlxObject.RIGHT;
 
