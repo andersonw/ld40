@@ -12,7 +12,9 @@ enum WallType{
 class Wall extends FlxSprite
 {
     public static var COLOR_REGULAR = new FlxColor(0xff98fb98);
+    public static var OUTLINE_REGULAR = new FlxColor(0xff2d4b2d);
     public static var COLOR_ICE = new FlxColor(0xffa5f2f3);
+    public static var OUTLINE_ICE = new FlxColor(0xff0099ff);
 
     public var wallType:WallType = REGULAR;
     public function new(?X:Float=0, ?Y:Float=0, ?width:Int=32, ?height:Int=32, ?wallType:WallType)
@@ -23,11 +25,11 @@ class Wall extends FlxSprite
         makeGraphic(width, height, FlxColor.TRANSPARENT, true);
         switch(wallType){
             case REGULAR:
-                FlxSpriteUtil.drawRoundRect(this, 0, 0, width, height, 5, 5, COLOR_REGULAR);
-//                makeGraphic(width, height, COLOR_REGULAR);
+                FlxSpriteUtil.drawRoundRect(this, 0, 0, width, height, 5, 5, OUTLINE_REGULAR);
+                FlxSpriteUtil.drawRoundRect(this, 2, 2, width-4, height-4, 5, 5, COLOR_REGULAR);
             case ICE:
-                FlxSpriteUtil.drawRoundRect(this, 0, 0, width, height, 5, 5, COLOR_ICE);
-//                makeGraphic(width, height, COLOR_ICE);
+                FlxSpriteUtil.drawRoundRect(this, 0, 0, width, height, 5, 5, OUTLINE_ICE);
+                FlxSpriteUtil.drawRoundRect(this, 2, 2, width-4, height-4, 5, 5, COLOR_ICE);
             default:
                 makeGraphic(width, height, COLOR_REGULAR);
         }
