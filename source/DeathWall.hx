@@ -9,6 +9,7 @@ class DeathWall extends Wall
     {
         super(X, Y, width, height);
         makeGraphic(width, height, new FlxColor(0xffdeaded));
+        alpha = 0;
         immovable=true;
     }
 }

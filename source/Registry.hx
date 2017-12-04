@@ -10,10 +10,10 @@ import flixel.util.FlxColor;
 class Registry
 {
     public static var levelList:Array<String> = [
-        // test levels
-        AssetPaths.box_hell__tmx,
-        AssetPaths.teleporters__tmx,
-        AssetPaths.boxy__tmx,
+        // // test levels
+        // AssetPaths.box_hell__tmx,
+        // AssetPaths.teleporters__tmx,
+        // AssetPaths.boxy__tmx,
         // real levels start here (should be ordered like how we want them in the actual game)
         AssetPaths.basic_movement__tmx,
         AssetPaths.tutorial_level_one__tmx,
@@ -32,9 +32,9 @@ class Registry
     public static var levelInitialized:Array<Bool> = [for (i in 0...levelList.length) false];
 
     public static var levelNames:Array<String> = [
-        "Cats love test levels! ",
-        "Cats love test levels! ",
-        "Cats love test levels! ",
+        // "Cats love test levels! ",
+        // "Cats love test levels! ",
+        // "Cats love test levels! ",
         "Cats love moving around! ",
         "Cats love keys! ",
         "Cats love jumping! ",
