@@ -102,6 +102,18 @@ class PlayState extends FlxState
 
 	public function playerToThePowerdown(player:Player, powerdown:Powerdown)
 	{
+		// If player is carrying a box, we don't want the box to pick up the powerdown.
+		var playerActuallyTouchingPowerdown:Bool = true;
+		if (player.isCarrying) {
+			var playerHeight:Float = player.y + 32;
+			if (playerHeight > powerdown.y + 32) {
+				playerActuallyTouchingPowerdown = false;
+			}
+		}
+		if (!playerActuallyTouchingPowerdown) {
+			return;
+		}
+		
 		InputManager.disableKey(powerdown.key);
 		powerdown.kill();
 
