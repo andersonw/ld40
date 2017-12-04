@@ -146,12 +146,16 @@ class Player extends FlxSprite
             animation.reset();
         }
 
-        vY = vY + GRAVITY;
+        trace(vY);
 
-        if (_up && onFloor) {
+        if (_up && onFloor && Math.abs(vY) < 50) {
             vY = -JUMP_SPEED;
             onFloor = false;
         }
+
+        vY = vY + GRAVITY;
+
+        
 
         // apply drag
         if (onFloor) {
@@ -181,5 +185,7 @@ class Player extends FlxSprite
 
         if (vX < 0.01 && vX > -0.01) vX = 0;
         velocity.set(vX, vY);
+
+        trace(vY);
     }
 }
