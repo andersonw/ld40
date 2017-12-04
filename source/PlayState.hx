@@ -54,16 +54,16 @@ class PlayState extends FlxState
 	public function playerToTheFloor(player:Player, floor:Wall)
 	{
 		if(player.isTouching(FlxObject.DOWN)){
-			if(!player.onFloor)
-				player.velocity.x *= 0.5;
-			player.onFloor = true;
-			player.canDash = true;
-
 			if(floor.wallType == ICE){
 				player.onIce = true;
 			}else{
 				player.onIce = false;
+				if(!player.onFloor)
+					player.velocity.x *= 0.5;
 			}
+
+			player.onFloor = true;
+			player.canDash = true;
 		}
 
 		if(player.onFloor){
