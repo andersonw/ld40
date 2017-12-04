@@ -4,6 +4,7 @@ class Registry
 {
     public static var levelList:Array<String> = [
         // test levels
+        AssetPaths.skiing__tmx,
         AssetPaths.box_hell__tmx,
         AssetPaths.teleporters__tmx,
         AssetPaths.boxy__tmx,
