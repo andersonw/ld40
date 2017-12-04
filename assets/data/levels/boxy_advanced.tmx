@@ -34,9 +34,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup name="Signs">
-  <object id="26" name="Boxes will also slide on ice, just like cats do!" x="896" y="512" width="32" height="32"/>
- </objectgroup>
+ <objectgroup name="Signs"/>
  <objectgroup name="Death">
   <object id="1" x="0" y="0" width="1440" height="32"/>
   <object id="2" x="0" y="0" width="32" height="928"/>
@@ -46,11 +44,11 @@
  <objectgroup name="Powerdowns">
   <object id="18" name="C" x="288.667" y="321.333" width="32" height="32"/>
   <object id="21" name="UP" x="1075.33" y="318.667" width="32" height="32"/>
-  <object id="24" name="LEFT" x="368" y="496" width="32" height="32"/>
-  <object id="25" name="LEFT" x="992" y="496" width="32" height="32"/>
+  <object id="24" name="RIGHT" x="368" y="496" width="32" height="32"/>
+  <object id="25" name="RIGHT" x="992" y="496" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Locations">
-  <object id="15" name="start" x="444" y="502.667" width="37.3333" height="37.3333"/>
+  <object id="15" name="start" x="529" y="512" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Walls">
   <object id="10" name="ICE" x="512" y="544" width="160" height="64"/>
@@ -62,6 +60,6 @@
   <object id="22" name="ICE" x="672" y="576" width="48" height="32"/>
  </objectgroup>
  <objectgroup name="Boxes">
-  <object id="17" name="box" x="512" y="512" width="32" height="32"/>
+  <object id="17" name="box" x="832" y="512" width="32" height="32"/>
  </objectgroup>
 </map>
