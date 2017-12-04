@@ -325,6 +325,7 @@ class PlayState extends FlxState
 		}
 
         if (FlxG.keys.justPressed.R) {
+			_deathSound.play();
             resetLevel();
         }
 
