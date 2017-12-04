@@ -32,21 +32,21 @@ class Registry
     public static var levelInitialized:Array<Bool> = [for (i in 0...levelList.length) false];
 
     public static var levelNames:Array<String> = [
-        "Cats love test levels!",
-        "Cats love test levels!",
-        "Cats love test levels!",
-        "Cats love moving around!",
-        "Cats love keys!",
-        "Cats love jumping!",
-        "Cats love platforms!",
-        "Cats love ice!",
-        "Cats love stacks!",
-        "Cats love adventures!",
-        "Cats love big spaces!",
-        "Cats love boxes!",
-        "Cats love reaching high places!",
-        "Cats love stacking!",
-        "Cats love puzzles!",
+        "Cats love test levels! ",
+        "Cats love test levels! ",
+        "Cats love test levels! ",
+        "Cats love moving around! ",
+        "Cats love keys! ",
+        "Cats love jumping! ",
+        "Cats love platforms! ",
+        "Cats love ice! ",
+        "Cats love stacks! ",
+        "Cats love adventures! ",
+        "Cats love big spaces! ",
+        "Cats love boxes! ",
+        "Cats love reaching high places! ",
+        "Cats love skiing! ",
+        "Cats love puzzles! "
     ];
 
     public static var currLevel:Int = 0; 
