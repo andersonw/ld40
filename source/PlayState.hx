@@ -48,7 +48,7 @@ class PlayState extends FlxTransitionableState
 		resetLevelBounds();
 
 		_tooltip = new FlxText(0,0,200);
-		_tooltip.setFormat(AssetPaths.Action_Man__ttf, 16, FlxColor.ORANGE);
+		_tooltip.setFormat(AssetPaths.Action_Man__ttf, 16, FlxColor.BROWN);
 		_tooltip.visible = false;
 		_tooltip.alpha = 0.6;
 		add(_tooltip);
@@ -162,7 +162,7 @@ class PlayState extends FlxTransitionableState
 			transOut = Registry.defaultTransOut;
 			FlxG.switchState(new PlayState(Registry.defaultTransIn));
 		} else {
-			// FlxG.switchState(new EndState());
+			FlxG.switchState(new EndState());
 		}	
 	}
 
