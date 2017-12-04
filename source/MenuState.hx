@@ -5,6 +5,8 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.system.FlxSound;
 import flixel.text.FlxText;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import flixel.math.FlxMath;
@@ -24,10 +26,12 @@ class MenuState extends FlxState
 
 		bgColor = new FlxColor(0xFFFFC0CB);
 
-		titleText = new FlxText(40, 100, 0, "Keyboard Kitten ");
+		titleText = new FlxText(40, 150, 0, "Keyboard Kitten ");
 		titleText.setFormat(AssetPaths.Action_Man_Shaded_Italic__ttf, 48, FlxColor.RED);
 		titleText.width += 10;
 		add(titleText);
+		FlxTween.angle(titleText, 0, 359, 1,
+					   {type: FlxTween.LOOPING, ease: FlxEase.sineInOut});
 
 		helpText = new FlxText(300, 250, 0, "[SPACE] START");
 		helpText.setFormat(AssetPaths.Action_Man__ttf, 32, FlxColor.WHITE);

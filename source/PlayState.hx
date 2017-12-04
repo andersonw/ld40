@@ -75,7 +75,7 @@ class PlayState extends FlxTransitionableState
 		_collected = 0;
 
 		_levelIntroText = new FlxText();
-		_levelIntroText.setFormat(AssetPaths.Action_Man__ttf, 48, FlxColor.ORANGE);
+		_levelIntroText.setFormat(AssetPaths.Action_Man_Shaded_Italic__ttf, 40, FlxColor.ORANGE);
 		_levelIntroText.scrollFactor.x = 0;
 		_levelIntroText.scrollFactor.y = 0;
 		_levelIntroText.alpha = 1;
@@ -105,7 +105,7 @@ class PlayState extends FlxTransitionableState
 						   2,
 						   {type: FlxTween.ONESHOT, ease: FlxEase.bounceOut, onComplete: finishTween});
 		}
-		
+
 		createHud(_level.powerdowns);
 
 		super.create();
