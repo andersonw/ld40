@@ -5,6 +5,7 @@ import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
+import flixel.system.FlxSound;
 
 import Constants.PlayerPhysics.*;
 
@@ -22,12 +23,15 @@ class Player extends FlxSprite
     public var grabBox:FlxObject;
     public var bottom:FlxObject;
 
+    private var _jumpSound:FlxSound;
+
     public function new(?X:Float=0, ?Y:Float=0)
     {
         super(X, Y);
         loadGraphic(AssetPaths.cat_sprite_sheet_2_trans__png, true, 32, 32);
         animation.add("r",[0,1],10,true);
         animation.add("l",[3,2],10,true);
+        _jumpSound = FlxG.sound.load(AssetPaths.jump__wav);
         alpha = DEFAULT_ALPHA;
         facing = FlxObject.RIGHT;
 
@@ -128,6 +132,7 @@ class Player extends FlxSprite
         if (_up && onFloor && Math.abs(vY) < 50) {
             vY = -JUMP_SPEED;
             onFloor = false;
+            _jumpSound.play();
         }
 
         vY = vY + GRAVITY;

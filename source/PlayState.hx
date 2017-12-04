@@ -3,10 +3,11 @@ package;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxState;
+import flixel.system.FlxSound;
 import flixel.group.FlxGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
-
+import flixel.util.FlxTimer;
 
 class PlayState extends FlxState
 {
@@ -16,6 +17,10 @@ class PlayState extends FlxState
 
 	private var _collected:Int;
 	private var _tooltip:FlxText;
+    private var _deathSound:FlxSound;
+    private var _powerdownSound:FlxSound;
+    private var _grabSound:FlxSound;
+    private var _finishSound:FlxSound;
 	
 	override public function create():Void
 	{
@@ -44,6 +49,16 @@ class PlayState extends FlxState
 		_tooltip.visible = false;
 		_tooltip.alpha = 0.6;
 		add(_tooltip);
+
+        _deathSound = FlxG.sound.load(AssetPaths.death__wav);
+        _powerdownSound = FlxG.sound.load(AssetPaths.powerdown__wav);
+        _grabSound = FlxG.sound.load(AssetPaths.grab__wav);
+        _finishSound = FlxG.sound.load(AssetPaths.finish__wav);
+
+		if (FlxG.sound.music == null)
+		{
+			FlxG.sound.playMusic(AssetPaths.amazing_song__wav, 1, true);
+		}
 
 		InputManager.resetDisabledKeys();
 		_collected = 0;
@@ -116,25 +131,29 @@ class PlayState extends FlxState
 		
 		InputManager.disableKey(powerdown.key);
 		powerdown.kill();
+        _powerdownSound.play();
 
 		_collected += 1;
 		if(_collected == _level.totalPowerdowns){
-			nextLevel();
+            _finishSound.play();
+            new FlxTimer().start(1, nextLevel,1);
 		}
 	}
 
 	public function playerToTheDeath(player:Player, death:DeathWall){
+        _deathSound.play();
 		resetLevel();
 	}
 
 	public function carryBox(grabBox:FlxObject, box:Box){
 		if(!box.carried && !_player.isCarrying)
 		{
+            _grabSound.play();
 			_player.carry(box);
 		}
 	}
 
-	public function nextLevel()
+	public function nextLevel(timer:FlxTimer)
 	{
 		if(Registry.currLevel < (Registry.levelList.length - 1)) {
 			Registry.currLevel += 1;
@@ -294,6 +313,7 @@ class PlayState extends FlxState
 
 		if(InputManager.isJustPressed(C)){
 			if(_player.isCarrying && canDrop()){
+                _grabSound.play();
 				_player.drop();
 			}else{
 				FlxG.overlap(_player.grabBox, _level.boxes, carryBox);
