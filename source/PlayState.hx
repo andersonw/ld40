@@ -17,6 +17,7 @@ class PlayState extends FlxTransitionableState
 	private var _level:Level;
 	private var _player:Player;
     private var _levelFile:String;
+    private var _hud:HUD;
 
 	private var _collected:Int;
 
@@ -55,7 +56,7 @@ class PlayState extends FlxTransitionableState
 		resetLevelBounds();
 
 		_tooltip = new FlxText(0,0,200);
-		_tooltip.setFormat(AssetPaths.Action_Man__ttf, 16, FlxColor.ORANGE);
+		_tooltip.setFormat(AssetPaths.Action_Man__ttf, 16, FlxColor.BROWN);
 		_tooltip.visible = false;
 		_tooltip.alpha = 0.8;
 		add(_tooltip);
@@ -104,8 +105,16 @@ class PlayState extends FlxTransitionableState
 						   2,
 						   {type: FlxTween.ONESHOT, ease: FlxEase.bounceOut, onComplete: finishTween});
 		}
+		
+		createHud(_level.powerdowns);
 
 		super.create();
+	}
+
+	private function createHud(powerdowns:FlxTypedGroup<Powerdown>)
+	{
+		this._hud = new HUD(powerdowns);
+		add(_hud);
 	}
 
 	public function playerToTheFloor(player:Player, floor:Wall)
@@ -180,6 +189,8 @@ class PlayState extends FlxTransitionableState
             _finishSound.play();
         	new FlxTimer().start(0, nextLevel,1);
 		}
+
+		_hud.updateHUD(powerdown.key);
 	}
 
 	public function playerToTheDeath(player:Player, death:DeathWall){
@@ -201,7 +212,7 @@ class PlayState extends FlxTransitionableState
 			transOut = Registry.defaultTransOut;
 			FlxG.switchState(new PlayState(Registry.defaultTransIn));
 		} else {
-			// FlxG.switchState(new EndState());
+			FlxG.switchState(new EndState());
 		}	
 	}
 
