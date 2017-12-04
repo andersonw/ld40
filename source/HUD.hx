@@ -29,6 +29,8 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	{
 		super();
 
+		createBackground();
+
 		processPowerdowns(powerdowns);
 		_tooltips = new Array<FlxText>();
 		_sprites = new Array<FlxSprite>();
@@ -56,12 +58,17 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		_sprites.push(_c);
 
 
-
-
 		forEach(function(spr:FlxSprite)
 	    {
 	        spr.scrollFactor.set(0, 0);
 	    });
+	}
+
+	private function createBackground()
+	{
+		var _background = new FlxSprite().makeGraphic(FlxG.width, 50, FlxColor.BLACK);
+		_background.alpha = 0.6;
+		add(_background);
 	}
 
 	private function processPowerdowns(powerdowns:FlxTypedGroup<Powerdown>)
@@ -81,18 +88,18 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	{
 		var i = getIndex(k);
 		_remaining[i] = _remaining[i]-1;
-		_tooltips[i].text = ("X "+_remaining[i]);
-		_sprites[i].alpha = 0.6;
+		_tooltips[i].text = ("X  "+_remaining[i]);
+		_sprites[i].alpha = 0.4;
 	}
 
 	private function createTooltip(k:FlxKey)
 	{
 		var _tooltip = new FlxText(0,0,50);
 		var i = getIndex(k);
-		_tooltip.setFormat(AssetPaths.pixelmix__ttf, 16, FlxColor.YELLOW);
+		_tooltip.setFormat(AssetPaths.Action_Man__ttf, 20, FlxColor.ORANGE);
 		_tooltip.alpha = 0.6;
-		_tooltip.text = ("X "+_remaining[i]);
-		_tooltip.x = horz_gap + i*horz_offset + 50;
+		_tooltip.text = ("X  "+_remaining[i]);
+		_tooltip.x = horz_gap + i*horz_offset + 45;
 		_tooltip.y = vert_gap_tt;
 		add(_tooltip);
 
