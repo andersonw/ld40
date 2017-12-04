@@ -48,7 +48,7 @@ class PlayState extends FlxTransitionableState
 		resetLevelBounds();
 
 		_tooltip = new FlxText(0,0,200);
-		_tooltip.setFormat(AssetPaths.pixelmix__ttf, 16, FlxColor.YELLOW);
+		_tooltip.setFormat(AssetPaths.Action_Man__ttf, 16, FlxColor.ORANGE);
 		_tooltip.visible = false;
 		_tooltip.alpha = 0.6;
 		add(_tooltip);
