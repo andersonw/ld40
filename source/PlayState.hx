@@ -54,14 +54,16 @@ class PlayState extends FlxState
 	public function playerToTheFloor(player:Player, floor:Wall)
 	{
 		if(player.isTouching(FlxObject.DOWN)){
-			player.onFloor = true;
-			player.canDash = true;
-
 			if(floor.wallType == ICE){
 				player.onIce = true;
 			}else{
 				player.onIce = false;
+				if(!player.onFloor)
+					player.velocity.x *= 0.5;
 			}
+
+			player.onFloor = true;
+			player.canDash = true;
 		}
 
 		if(player.onFloor){
@@ -207,7 +209,14 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void
 	{
 		_tooltip.visible = false;
-		_player.onFloor = false;
+		//_player.onFloor = false;
+		if(_player.onFloor){
+			_player.onFloor = (FlxG.overlap(_player.bottom, _level.walls) ||
+							   FlxG.overlap(_player.bottom, _level.boxes));
+		}
+		
+
+
 		for(box in _level.boxes){
 			if(box.onFloor){
 				if(!FlxG.overlap(box.bottom, _level.walls)){

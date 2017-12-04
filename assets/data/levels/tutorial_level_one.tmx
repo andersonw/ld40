@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="25" height="15" tilewidth="32" tileheight="32" nextobjectid="17">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="25" height="15" tilewidth="32" tileheight="32" nextobjectid="18">
  <layer name="Tile Layer 1" width="25" height="15">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -26,7 +26,7 @@
   <object id="14" x="-96" y="448" width="1024" height="32"/>
  </objectgroup>
  <objectgroup name="Signs">
-  <object id="16" name="Collecting a key will prevent you from using it for the rest of the level, so be careful!" x="160" y="288" width="32" height="32"/>
+  <object id="16" name="Oh no! When the cat picks up a key, you won't be able to use it anymore. If you're stuck, use R to reset the level." x="346" y="288" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Powerdowns">
   <object id="7" name="RIGHT" x="352" y="288" width="32" height="32"/>
