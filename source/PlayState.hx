@@ -7,6 +7,8 @@ import flixel.addons.transition.FlxTransitionableState;
 import flixel.system.FlxSound;
 import flixel.group.FlxGroup;
 import flixel.text.FlxText;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 
@@ -17,11 +19,16 @@ class PlayState extends FlxTransitionableState
     private var _levelFile:String;
 
 	private var _collected:Int;
+
 	private var _tooltip:FlxText;
+	private var _levelIntroText:FlxText;
+
     private var _deathSound:FlxSound;
     private var _powerdownSound:FlxSound;
     private var _grabSound:FlxSound;
     private var _finishSound:FlxSound;
+
+	public var loadingIntroText:Bool = false;
 	
 	override public function create():Void
 	{
@@ -50,7 +57,7 @@ class PlayState extends FlxTransitionableState
 		_tooltip = new FlxText(0,0,200);
 		_tooltip.setFormat(AssetPaths.Action_Man__ttf, 16, FlxColor.ORANGE);
 		_tooltip.visible = false;
-		_tooltip.alpha = 0.6;
+		_tooltip.alpha = 0.8;
 		add(_tooltip);
 
         _deathSound = FlxG.sound.load(AssetPaths.death__wav, 0.3);
@@ -65,6 +72,38 @@ class PlayState extends FlxTransitionableState
 
 		InputManager.resetDisabledKeys();
 		_collected = 0;
+
+		_levelIntroText = new FlxText();
+		_levelIntroText.setFormat(AssetPaths.Action_Man__ttf, 48, FlxColor.ORANGE);
+		_levelIntroText.scrollFactor.x = 0;
+		_levelIntroText.scrollFactor.y = 0;
+		_levelIntroText.alpha = 1;
+		add(_levelIntroText);
+		// If this is the first time we're seeing the level, disable inputs for 1 second and display level name
+		if (!Registry.levelInitialized[Registry.currLevel]) {
+			Registry.levelInitialized[Registry.currLevel] = true;
+			var levelName:String = "Default name";
+			if (Registry.currLevel < Registry.levelNames.length) 
+				levelName = Registry.levelNames[Registry.currLevel];
+
+			_levelIntroText.text = levelName;
+			_levelIntroText.x = (FlxG.width - _levelIntroText.width)/2;
+			_levelIntroText.y = -40;
+			_levelIntroText.visible = true;
+			loadingIntroText = true;
+			
+			var finishTween = function(tween:FlxTween) {
+								FlxTween.tween(_levelIntroText,
+											   {alpha: 0},
+											   1,
+											   {type: FlxTween.ONESHOT, ease: FlxEase.quadIn});
+								loadingIntroText = false;
+							   };
+			FlxTween.tween(_levelIntroText,
+						   {x: _levelIntroText.x, y: FlxG.height/4},
+						   2,
+						   {type: FlxTween.ONESHOT, ease: FlxEase.bounceOut, onComplete: finishTween});
+		}
 
 		super.create();
 	}

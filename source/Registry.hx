@@ -30,6 +30,10 @@ class Registry
         AssetPaths.boxy_advanced__tmx
     ];
 
+    public static var levelInitialized:Array<Bool> = [for (i in 0...levelList.length) false];
+
+    public static var levelNames:Array<String> = [for (i in 0...levelList.length) "Cats like stuff!"];
+
     public static var currLevel:Int = 0; 
 
     public static var defaultTransIn:TransitionData;
