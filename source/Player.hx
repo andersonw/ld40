@@ -102,27 +102,6 @@ class Player extends FlxSprite
         _down = InputManager.isPressed(DOWN);
         _left = InputManager.isPressed(LEFT);
         _right = InputManager.isPressed(RIGHT);
-
-        var _upDash = InputManager.isJustPressed(W);
-        var _leftDash = InputManager.isJustPressed(A);
-        var _rightDash = InputManager.isJustPressed(D);
-        var _downDash = InputManager.isJustPressed(S);
-
-        // only consider dash input if dash input is pressed
-        if(canDash && (_upDash || _leftDash || _rightDash || _downDash)){
-            if(_upDash){
-                y -= DASH_LENGTH;
-            }else if(_downDash){
-                y += DASH_LENGTH;
-            }else if(_leftDash){
-                x -= DASH_LENGTH;
-            }else if(_rightDash){
-                x += DASH_LENGTH;
-            }
-
-            canDash = false;
-            return;
-        }
         
 
         if (_up && _down)
