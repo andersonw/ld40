@@ -24,7 +24,7 @@ class EndState extends FlxState
 		add(endText);
 
         helpText = new FlxText(100, 250, 0, "Press [SPACE] to return to the menu");
-		helpText.setFormat(AssetPaths.Action_Man__ttf, 32, FlxColor.WHITE);
+		helpText.setFormat(AssetPaths.Action_Man__ttf, 16, FlxColor.WHITE);
 		add(helpText);
 	}
 
