@@ -17,7 +17,6 @@ class Registry
         // real levels start here (should be ordered like how we want them in the actual game)
         AssetPaths.basic_movement__tmx,
         AssetPaths.tutorial_level_one__tmx,
-        AssetPaths.box_intro_level__tmx,
         AssetPaths.jumping_test__tmx,
         AssetPaths.two_jumps__tmx,
         AssetPaths.tutorial_level_two__tmx, 
@@ -32,7 +31,23 @@ class Registry
 
     public static var levelInitialized:Array<Bool> = [for (i in 0...levelList.length) false];
 
-    public static var levelNames:Array<String> = [for (i in 0...levelList.length) "Cats like stuff!"];
+    public static var levelNames:Array<String> = [
+        "Cats love test levels!",
+        "Cats love test levels!",
+        "Cats love test levels!",
+        "Cats love moving around!",
+        "Cats love keys!",
+        "Cats love jumping!",
+        "Cats love platforms!",
+        "Cats love ice!",
+        "Cats love stacks!",
+        "Cats love adventures!",
+        "Cats love big spaces!",
+        "Cats love boxes!",
+        "Cats love reaching high places!",
+        "Cats love stacking!",
+        "Cats love puzzles!",
+    ];
 
     public static var currLevel:Int = 0; 
 
