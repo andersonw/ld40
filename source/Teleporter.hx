@@ -4,7 +4,6 @@ import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
 
-
 class Teleporter extends Wall
 {
     public static inline var TELEPORTER_WIDTH = 48;
