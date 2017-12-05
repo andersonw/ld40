@@ -63,6 +63,7 @@ class PlayState extends FlxTransitionableState
 		_player.resetMovement();
 		add(_player);
 		add(_player.grabBox);
+		add(_player.bottom);
 
 		for(box in _level.boxes)
 		{

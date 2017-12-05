@@ -164,7 +164,9 @@ class Player extends FlxSprite
             vY = -VERTICAL_TERMINAL_SPEED;
         }
 
-        if (vX < 0.01 && vX > -0.01) vX = 0;
+        if (vX < 0.01 && vX > -0.01){
+            vX = 0;
+        }
         velocity.set(vX, vY);
     }
 }
