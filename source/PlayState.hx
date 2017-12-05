@@ -230,6 +230,7 @@ class PlayState extends FlxTransitionableState
 		
 		InputManager.disableKey(powerdown.key);
 		powerdown.kill();
+		_powerdownSound.stop();
         _powerdownSound.play();
 
 		_collected += 1;
