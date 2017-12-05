@@ -35,7 +35,7 @@ class Registry
         // "Cats love test levels! ",
         // "Cats love test levels! ",
         // "Cats love test levels! ",
-        "Cats love moving around! ",
+        "Cats love tutorials! ",
         "Cats love keys! ",
         "Cats love jumping! ",
         "Cats love ice! ",
