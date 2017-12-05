@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxObject;
+import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.system.FlxSound;
@@ -10,6 +11,7 @@ import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
+import flixel.util.FlxGradient;
 import flixel.util.FlxTimer;
 
 class PlayState extends FlxTransitionableState
@@ -30,10 +32,24 @@ class PlayState extends FlxTransitionableState
     private var _finishSound:FlxSound;
 
 	public var loadingIntroText:Bool = false;
+
+	private var _background:FlxSprite;
 	
 	override public function create():Void
 	{
 		Registry.init();
+
+		_background = FlxGradient.createGradientFlxSprite(
+			FlxG.width, 
+			FlxG.height, 
+			[new FlxColor(0xFFDEADBE), new FlxColor(0xFFEFDEAD)],
+			1,
+			90,
+			true);
+//		_background.setPosition(10,10);
+		_background.scrollFactor.x = 0;
+		_background.scrollFactor.y = 0;
+		add(_background);
 
 		_levelFile = Registry.levelList[Registry.currLevel];
         _level = new Level(_levelFile);
@@ -75,7 +91,7 @@ class PlayState extends FlxTransitionableState
 		_collected = 0;
 
 		_levelIntroText = new FlxText();
-		_levelIntroText.setFormat(AssetPaths.Action_Man_Shaded_Italic__ttf, 40, FlxColor.ORANGE);
+		_levelIntroText.setFormat(AssetPaths.Action_Man_Shaded_Italic__ttf, 40, FlxColor.BLACK);
 		_levelIntroText.scrollFactor.x = 0;
 		_levelIntroText.scrollFactor.y = 0;
 		_levelIntroText.alpha = 1;
