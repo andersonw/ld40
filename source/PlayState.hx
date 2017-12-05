@@ -25,6 +25,7 @@ class PlayState extends FlxTransitionableState
 
 	private var _tooltip:FlxText;
 	private var _levelIntroText:FlxText;
+    private var _levelNumberText:FlxText;
 
     private var _deathSound:FlxSound;
     private var _powerdownSound:FlxSound;
@@ -95,6 +96,12 @@ class PlayState extends FlxTransitionableState
 		_levelIntroText.scrollFactor.x = 0;
 		_levelIntroText.scrollFactor.y = 0;
 		_levelIntroText.alpha = 1;
+        _levelNumberText = new FlxText();
+        _levelNumberText.setFormat(AssetPaths.Action_Man_Shaded_Italic__ttf, 20, FlxColor.BLACK);
+        _levelNumberText.scrollFactor.x = 0;
+		_levelNumberText.scrollFactor.y = 0;
+		_levelNumberText.alpha = 1;
+        add(_levelNumberText);
 		add(_levelIntroText);
 		// If this is the first time we're seeing the level, disable inputs for 1 second and display level name
 		if (!Registry.levelInitialized[Registry.currLevel]) {
@@ -107,6 +114,12 @@ class PlayState extends FlxTransitionableState
 			_levelIntroText.x = (FlxG.width - _levelIntroText.width)/2;
 			_levelIntroText.y = -40;
 			_levelIntroText.visible = true;
+
+            _levelNumberText.text = "Level " + (Registry.currLevel+1) + " of " + Registry.levelNames.length;
+			_levelNumberText.x = (FlxG.width - _levelIntroText.width)/2;
+			_levelNumberText.y = 200;
+			_levelNumberText.visible = true;
+            
 			loadingIntroText = true;
 			
 			var finishTween = function(tween:FlxTween) {
@@ -120,6 +133,18 @@ class PlayState extends FlxTransitionableState
 						   {x: _levelIntroText.x, y: FlxG.height/4},
 						   2,
 						   {type: FlxTween.ONESHOT, ease: FlxEase.bounceOut, onComplete: finishTween});
+
+            var finishTween = function(tween:FlxTween) {
+								FlxTween.tween(_levelNumberText,
+											   {alpha: 0},
+											   1,
+											   {type: FlxTween.ONESHOT, ease: FlxEase.quadIn});
+								loadingIntroText = false;
+							   };
+			FlxTween.tween(_levelNumberText,
+						   {x: _levelIntroText.x, y: FlxG.height/3},
+						   2,
+						   {type: FlxTween.ONESHOT, ease: FlxEase.bounceOut, onComplete: finishTween});               
 		}
 
 		createHud(_level.powerdowns);
