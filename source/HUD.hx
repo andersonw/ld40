@@ -23,13 +23,14 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	private var vert_gap = 10;
 	private var vert_gap_tt = 15;
 	private var horz_gap = 10;
-	private var horz_offset = 125;
+	private var horz_offset = 100;
 
-	public function new(powerdowns:FlxTypedGroup<Powerdown>)
+	public function new(powerdowns:FlxTypedGroup<Powerdown>, curr:Int, total:Int)
 	{
 		super();
 
 		createBackground();
+		createLevelIndicator(curr, total);
 
 		processPowerdowns(powerdowns);
 		_tooltips = new Array<FlxText>();
@@ -69,6 +70,17 @@ class HUD extends FlxTypedGroup<FlxSprite>
 		var _background = new FlxSprite().makeGraphic(FlxG.width, 50, FlxColor.BLACK);
 		_background.alpha = 0.6;
 		add(_background);
+	}
+
+	private function createLevelIndicator(curr:Int, total:Int)
+	{
+		var _tooltip = new FlxText(0,0,200);
+		_tooltip.setFormat(AssetPaths.Action_Man__ttf, 20, FlxColor.ORANGE);
+		_tooltip.alpha = 0.6;
+		_tooltip.text = ("Level: "+curr+'/'+total);
+		_tooltip.x = horz_gap + 478 + 45;
+		_tooltip.y = vert_gap_tt;
+		add(_tooltip);
 	}
 
 	private function processPowerdowns(powerdowns:FlxTypedGroup<Powerdown>)
