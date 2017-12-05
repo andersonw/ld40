@@ -154,7 +154,7 @@ class PlayState extends FlxTransitionableState
 
 	private function createHud(powerdowns:FlxTypedGroup<Powerdown>)
 	{
-		this._hud = new HUD(powerdowns);
+		this._hud = new HUD(powerdowns, Registry.currLevel+1, Registry.levelList.length);
 		add(_hud);
 	}
 
