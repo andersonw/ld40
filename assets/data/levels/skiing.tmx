@@ -44,7 +44,7 @@
  <objectgroup name="Powerdowns">
   <object id="27" name="UP" x="1243" y="713" width="32" height="32"/>
   <object id="29" name="LEFT" x="336" y="207" width="32" height="32"/>
-  <object id="30" name="C" x="1098" y="246" width="32" height="32"/>
+  <object id="30" name="C" x="1139" y="248" width="32" height="32"/>
   <object id="42" name="RIGHT" x="1465" y="667" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="Locations">
@@ -52,14 +52,14 @@
  </objectgroup>
  <objectgroup name="Walls">
   <object id="14" x="448" y="448" width="288" height="32"/>
-  <object id="15" x="849" y="327" width="288" height="32"/>
+  <object id="15" x="849" y="327" width="326" height="32"/>
   <object id="18" name="ICE" x="736" y="448" width="414" height="32"/>
   <object id="21" name="ICE" x="1120" y="887" width="192" height="32"/>
   <object id="17" name="ICE" x="1279" y="33" width="32" height="590"/>
   <object id="35" name="ICE" x="1280" y="704" width="32" height="184"/>
   <object id="41" name="ICE" x="1312" y="704" width="207" height="32"/>
-  <object id="43" name="ICE" x="1217" y="33" width="94" height="167"/>
-  <object id="44" x="1097" y="288" width="40" height="40"/>
+  <object id="43" name="ICE" x="1217" y="33" width="94" height="126"/>
+  <object id="44" x="1135" y="288" width="40" height="40"/>
   <object id="45" x="287" y="256" width="82" height="32"/>
  </objectgroup>
  <objectgroup name="Boxes">
