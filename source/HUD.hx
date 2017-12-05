@@ -7,6 +7,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.input.keyboard.FlxKey;
+import flixel.util.FlxSpriteUtil;
 
 class HUD extends FlxTypedGroup<FlxSprite>
 {
@@ -21,7 +22,7 @@ class HUD extends FlxTypedGroup<FlxSprite>
 	private var _c:FlxSprite;
 
 	private var vert_gap = 10;
-	private var vert_gap_tt = 15;
+	private var vert_gap_tt = 18;
 	private var horz_gap = 10;
 	private var horz_offset = 100;
 
@@ -67,7 +68,12 @@ class HUD extends FlxTypedGroup<FlxSprite>
 
 	private function createBackground()
 	{
+		var height = 50;
 		var _background = new FlxSprite().makeGraphic(FlxG.width, 50, FlxColor.BLACK);
+		// var _background = new FlxSprite().makeGraphic(FlxG.width, height, FlxColor.TRANSPARENT);
+		// FlxSpriteUtil.drawRoundRect(_background, 0, 0, FlxG.width, height, 5, 5, FlxColor.WHITE);
+		// FlxSpriteUtil.drawRoundRect(_background, 2, 2, FlxG.width-4, height-4, 5, 5, FlxColor.BLACK);
+
 		_background.alpha = 0.6;
 		add(_background);
 	}
