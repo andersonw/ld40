@@ -40,7 +40,7 @@ class Powerdown extends FlxSprite
         //trace(width);
         //trace(height);
         var tweenDelay:Float = Math.random()/2;
-        _tween = FlxTween.tween(this, { x: this.x, y: this.y-3 }, 0.5, 
+        _tween = FlxTween.tween(this, { x: this.x, y: this.y-5 }, 0.5, 
                                 { type: FlxTween.PINGPONG, ease: FlxEase.quadInOut, startDelay: tweenDelay });
 
         immovable=true;

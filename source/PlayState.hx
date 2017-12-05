@@ -185,8 +185,14 @@ class PlayState extends FlxTransitionableState
 					player.x -= 2;
 				}
 			}
+		}	
+	}
+
+	public function playerToTheBox(player:Player, box:Box) {
+		playerToTheFloor(player, box);
+		if (player.isTouching(FlxObject.UP)) {
+			box.onFloor = false;
 		}
-		
 	}
 
 	public function boxToTheFloor(box:Box, floor:Wall)
@@ -379,7 +385,7 @@ class PlayState extends FlxTransitionableState
 		// only collide with boxes you're not carrying
 		for(box in _level.boxes){
 			if(!box.carried){
-				FlxG.collide(_player, box, playerToTheFloor);
+				FlxG.collide(_player, box, playerToTheBox);
 			}
 		}
 
@@ -421,21 +427,21 @@ class PlayState extends FlxTransitionableState
             resetLevel();
         }
 
-   //      if (FlxG.keys.justPressed.N) {
-			// InputManager.resetDisabledKeys();
-   //          if (Registry.currLevel + 1 < Registry.levelList.length) {
-   //              Registry.currLevel += 1;
-   //          } 
-   //          FlxG.switchState(new PlayState());
-   //      }
+	      if (FlxG.keys.justPressed.N) {
+				 InputManager.resetDisabledKeys();
+	          if (Registry.currLevel + 1 < Registry.levelList.length) {
+	              Registry.currLevel += 1;
+	          } 
+	          FlxG.switchState(new PlayState());
+	      }
 
-   //      if (FlxG.keys.justPressed.B) {
-			// InputManager.resetDisabledKeys();
-   //          if (Registry.currLevel != 0) {
-   //              Registry.currLevel -= 1;
-   //          }
-   //          FlxG.switchState(new PlayState());
-   //      }
+	      if (FlxG.keys.justPressed.B) {
+			InputManager.resetDisabledKeys();
+	    	if (Registry.currLevel != 0) {
+	              Registry.currLevel -= 1;
+	          }
+	          FlxG.switchState(new PlayState());
+	      }
 
 		super.update(elapsed);
 	}
