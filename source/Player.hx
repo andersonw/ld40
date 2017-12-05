@@ -11,7 +11,7 @@ import Constants.PlayerPhysics.*;
 
 class Player extends FlxSprite
 {
-    public static var DEFAULT_ALPHA = 0.6;
+    public static var DEFAULT_ALPHA = 1;
 
     public var onFloor:Bool = false;
     public var onIce:Bool = false;

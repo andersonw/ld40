@@ -45,10 +45,11 @@ class Level extends TiledMap {
 
         entityGroups = [teleporters,
                         walls, 
-                        boxes, 
+                        boxes,
+                        signs, 
                         powerdowns, 
-                        deathWalls, 
-                        signs];
+                        deathWalls 
+                        ];
 
         for (layer in layers) {
             if (layer.type != TiledLayerType.OBJECT) continue;
