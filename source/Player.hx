@@ -17,6 +17,8 @@ class Player extends FlxSprite
     public var onIce:Bool = false;
     public var canDash:Bool = false;
 
+    public var speedModifier:Float = 1;
+
     public var isCarrying:Bool = false;
     public var carrying:Box;
 
@@ -107,7 +109,11 @@ class Player extends FlxSprite
         _left = InputManager.isPressed(LEFT);
         _right = InputManager.isPressed(RIGHT);
         
-
+        if (FlxG.keys.anyPressed([SHIFT]))
+            speedModifier = 0.3;
+        else
+            speedModifier = 1;
+        
         if (_up && _down)
             _up = _down = false;
         if (_left && _right)
@@ -118,11 +124,11 @@ class Player extends FlxSprite
         var vY:Float = velocity.y;
         if (_left) {
             animation.play("l");
-            vX -= HORIZONTAL_ACCELERATION;
+            vX -= HORIZONTAL_ACCELERATION * speedModifier;
             facing = FlxObject.LEFT;
         } else if (_right) {
             animation.play("r");
-            vX += HORIZONTAL_ACCELERATION;
+            vX += HORIZONTAL_ACCELERATION * speedModifier;
             facing = FlxObject.RIGHT;
         }
         else {
